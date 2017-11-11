@@ -94,7 +94,7 @@ object FunctionalAssignment {
     * Implementation hint: you always have to compare two consecutive elements of the array.
     * Elements which are equal are considered to be ordered.
     */
-  def isSorted[A](as: Array[A], gt: (A, A) => Boolean): Boolean = as.zip()
+  def isSorted[A](as: Array[A], gt: (A, A) => Boolean): Boolean = ???
 
   /**
     * Takes both lists and combines them, element per element.
