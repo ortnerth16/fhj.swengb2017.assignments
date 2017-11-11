@@ -27,8 +27,7 @@ object FunctionalAssignment {
       {
         i*(-1)
       }
-    else
-      i
+    else i
   }
 
 
@@ -70,7 +69,10 @@ object FunctionalAssignment {
     * @param i parameter for which the factorial must be calculated
     * @return i!
     */
-  def fact(i: Int): Int = ???
+  def fact(i: Int): Int =  {
+    if(i == 1) 1
+    else i * fact (i-1)
+  }
 
   /**
     * compute the n'th fibonacci number
@@ -80,7 +82,10 @@ object FunctionalAssignment {
     *
     * https://en.wikipedia.org/wiki/Fibonacci_number
     */
-  def fib(n: Int): Int = ???
+  def fib(n: Int): Int = {
+    if (n < 2) n
+    else fib(n-1)+fib(n-2)
+  }
 
   /**
     * Implement a isSorted which checks whether an Array[A] is sorted according to a
@@ -89,7 +94,7 @@ object FunctionalAssignment {
     * Implementation hint: you always have to compare two consecutive elements of the array.
     * Elements which are equal are considered to be ordered.
     */
-  def isSorted[A](as: Array[A], gt: (A, A) => Boolean): Boolean = ???
+  def isSorted[A](as: Array[A], gt: (A, A) => Boolean): Boolean = as.zip()
 
   /**
     * Takes both lists and combines them, element per element.
