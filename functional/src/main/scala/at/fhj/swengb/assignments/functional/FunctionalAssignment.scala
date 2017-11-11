@@ -9,12 +9,12 @@ object FunctionalAssignment {
   /**
     * A function which returns its parameters in a changed order. Look at the type signature.
     */
-  def flip[A, B](t: (A, B)): (B, A) = ???
+  def flip[A, B](t: (A, B)): (B, A) = (t._2, t._1)
 
   /**
     * given a Seq[A] and a function f : A => B, return a Seq[B]
     */
-  def unknown[A, B](as: Seq[A], fn: A => B): Seq[B] = ???
+  def unknown[A, B](as: Seq[A], fn: A => B): Seq[B] = as.map(fn)
 
   /**
     * Returns the absolute value of the parameter i.
@@ -22,7 +22,14 @@ object FunctionalAssignment {
     * @param i a value, either with a positive or a negative sign.
     * @return
     */
-  def abs(i: Int): Int = ???
+  def abs(i: Int): Int = {
+    if(i<0 || i== -1)
+      {
+        i*(-1)
+      }
+    else
+      i
+  }
 
 
   // Describe with your own words what this function does.
@@ -34,11 +41,11 @@ object FunctionalAssignment {
   //
   /**
     *
-    * @param as
-    * @param b
-    * @param fn
-    * @tparam A
-    * @tparam B
+    * @param as is the sequence that foldLeft uses
+    * @param b is the accumulator
+    * @param fn is the function
+    * @tparam A is the type of the sequence
+    * @tparam B is the type of the accumulator
     * @return
     */
   def op[A, B](as: Seq[A], b: B)(fn: (B, A) => B): B = as.foldLeft(b)(fn)
@@ -50,7 +57,7 @@ object FunctionalAssignment {
     * @param numbers
     * @return
     */
-  def sum(numbers: Seq[Int]): Int = ???
+  def sum(numbers: Seq[Int]): Int = op(numbers, 0) (_+_)
 
 
   /**
