@@ -24,14 +24,13 @@ object FunctionalAssignment {
     * @param i a value, either with a positive or a negative sign.
     * @return
     */
-  def abs(i: Int): Int = i.abs
-  /*{
+  def abs(i: Int): Int = {
     if(i<0 || i== -1)
       {
         i*(-1)
       }
     else i
-  }*/
+  }
 
 
   // Describe with your own words what this function does.
@@ -125,22 +124,25 @@ object FunctionalAssignment {
   // it also provides a convenience constructor in order to instantiate a MyList without hassle
   object MyList {
 
-    def sum[Int] (list: MyList[Int]): Int = ???
-    /*{
+    def sum(list: MyList[Int]): Int = {
       list match {
-        case Nil => 0
-        case Cons(head,tail) => head + sum(tail)
-      }
-    }*/
-
-    def product[Int](list: MyList[Int]): Int = ???
-
-    def apply[A](as: A*): MyList[A] = {
-      as match {
-        case Nil => MyNil
-        case h :: tl => Cons(h, apply(tl: _*))
+        case Cons(head, tail) => head + sum(tail)
+        case MyNil => 0
       }
     }
+
+    def product(list: MyList[Int]): Int = {
+      list match {
+        case Cons(head, tail) => head * product(tail)
+        case MyNil => 0
+      }
+    }
+
+    def apply[A](as: A*): MyList[A] = {
+      if (as.isEmpty) MyNil
+      else Cons(as.head, apply(as.tail: _*))
+    }
+
 
   }
 
