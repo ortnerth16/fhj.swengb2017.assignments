@@ -1,5 +1,7 @@
 package at.fhj.swengb.assignments.functional
 
+import java.security.KeyStore.TrustedCertificateEntry
+
 /**
   * In this assignment you have the chance to demonstrate basic understanding of
   * functions like map/filter/foldleft a.s.o.
@@ -22,13 +24,14 @@ object FunctionalAssignment {
     * @param i a value, either with a positive or a negative sign.
     * @return
     */
-  def abs(i: Int): Int = {
+  def abs(i: Int): Int = i.abs
+  /*{
     if(i<0 || i== -1)
       {
         i*(-1)
       }
     else i
-  }
+  }*/
 
 
   // Describe with your own words what this function does.
@@ -94,7 +97,14 @@ object FunctionalAssignment {
     * Implementation hint: you always have to compare two consecutive elements of the array.
     * Elements which are equal are considered to be ordered.
     */
-  def isSorted[A](as: Array[A], gt: (A, A) => Boolean): Boolean = ???
+  def isSorted[A](as: Array[A], gt: (A, A) => Boolean): Boolean = {
+    def test(n: Int): Boolean = {
+      if (n <= 1) true
+      else if (!gt(as(n), as(n+1))) false
+      else test(n+1)
+    }
+    test(0)
+  }
 
   /**
     * Takes both lists and combines them, element per element.
@@ -102,7 +112,7 @@ object FunctionalAssignment {
     * If one sequence is shorter than the other one, the function stops at the last element
     * of the shorter sequence.
     */
-  def genPairs[A, B](as: Seq[A], bs: Seq[B]): Seq[(A, B)] = ???
+  def genPairs[A, B](as: Seq[A], bs: Seq[B]): Seq[(A, B)] = as.zip(bs)
 
   // a simple definition of a linked list, we define our own list data structure
   sealed trait MyList[+A]
@@ -115,7 +125,13 @@ object FunctionalAssignment {
   // it also provides a convenience constructor in order to instantiate a MyList without hassle
   object MyList {
 
-    def sum[Int](list: MyList[Int]): Int = ???
+    def sum[Int] (list: MyList[Int]): Int = ???
+    /*{
+      list match {
+        case Nil => 0
+        case Cons(head,tail) => head + sum(tail)
+      }
+    }*/
 
     def product[Int](list: MyList[Int]): Int = ???
 
