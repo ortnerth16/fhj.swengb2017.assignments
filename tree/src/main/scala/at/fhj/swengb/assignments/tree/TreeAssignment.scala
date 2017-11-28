@@ -39,7 +39,13 @@ object Graph {
     * @param convert a converter function
     * @return
     */
-  def traverse[A, B](tree: Tree[A])(convert: A => B): Seq[B] =  ???
+  def traverse[A, B](tree: Tree[A])(convert: A => B): Seq[B] = {
+    def add(tree: Tree[A], list: Seq[A]): Seq[A] = tree match {
+      case Node(value) => list :+ value
+      case Branch(left,right) => add(left, add(right, list))
+    }
+    add(tree, List()).reverse.map(convert)
+  }
 
 
   /**
@@ -61,7 +67,12 @@ object Graph {
               treeDepth: Int,
               factor: Double = 0.75,
               angle: Double = 45.0,
-              colorMap: Map[Int, Color] = Graph.colorMap): Tree[L2D] = ???
+              colorMap: Map[Int, Color] = Graph.colorMap): Tree[L2D] =
+  {
+    require(treeDepth <= 16, message = "depth is too high")
+    Node(L2D(start, initialAngle, length, colorMap(0)))
+
+  }
 
 }
 
