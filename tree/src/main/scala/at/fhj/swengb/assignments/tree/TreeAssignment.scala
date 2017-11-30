@@ -72,35 +72,32 @@ object Graph {
     require(treeDepth <= 16, message = "Depth higher than 16 is not allowed.")
     val rootNode = Node(L2D(start, initialAngle, length, colorMap(0)))
 
-    def createSubTree(leaf: Node[L2D],
-                      factor: Double,
-                      angle: Double,
-                      color: Color): Branch[L2D] = {
+    def createSubTree(leaf: Node[L2D], factor: Double, angle: Double, color: Color): Branch[L2D] = {
       val nodeLeft = Node(leaf.value.left(factor, angle, color))
       val nodeRight = Node(leaf.value.right(factor, angle, color))
 
       Branch(leaf, Branch(nodeLeft, nodeRight))
     }
 
-    def createTree(tree: Tree[L2D],
-                   depth: Int,
-                   maxDepth: Int): Tree[L2D] = {
+    def createTree(tree: Tree[L2D], depth: Int, maxDepth: Int): Tree[L2D] = {
+      def nextLevel(subTree: Tree[L2D], level: Int): Branch[L2D] = {
 
+          subTree match {
+            case Node(root) => createSubTree(Node(root), factor, angle, colorMap(0))
+            case Branch(Node(root), Branch(Node(left), Node(right))) =>
+              val createSubtreeLeft = createSubTree(Node(left), factor, angle, colorMap(1))
+
+              val createSubtreeRight = createSubTree(Node(right), factor, angle, colorMap(1))
+              Branch(Node(root), Branch(createSubtreeLeft, createSubtreeRight))
+
+            case Branch(Node(root), Branch(left, right)) =>
+              Branch(Node(root), Branch(nextLevel(left, depth + 1), nextLevel(right, depth + 1)))
+          }
+        }
       if(depth == maxDepth)
         tree
-      else {
-        tree match {
-          case Node(root) => createSubTree(Node(root), factor, angle, colorMap(0))
-          case Branch(Node(root), Branch(Node(left), Node(right))) =>
-            val createSubtreeLeft = createSubTree(Node(left), factor, angle, colorMap(1))
-
-            val createSubtreeRight = createSubTree(Node(right), factor, angle, colorMap(1))
-            Branch(Node(root), Branch(createSubtreeLeft, createSubtreeRight))
-
-          /*case Branch(Node(root), Branch(left,right)) =>
-            Branch(Node(root), Branch(createTree(left, depth, maxDepth), createTree(right, depth, maxDepth)))*/
-        }
-      }
+      else
+        createTree(nextLevel(tree, depth), depth+1, maxDepth)
     }
     createTree(rootNode, 0, treeDepth)
   }
