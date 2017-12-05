@@ -50,10 +50,10 @@ class CalculatorFxController() extends Initializable {
   override def initialize(location: URL, resources: ResourceBundle) = {
 
   }
-
+  private var output: TextField = _
   //numbers
   def numberNine() : Unit = {
-    
+    output.setText("9")
   }
   def numberEight() : Unit = {
     println("an event has happened")
