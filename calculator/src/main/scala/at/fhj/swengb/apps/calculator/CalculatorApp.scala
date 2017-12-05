@@ -1,10 +1,11 @@
 package at.fhj.swengb.apps.calculator
 
+import java.awt.TextField
 import java.net.URL
 import java.util.ResourceBundle
 import javafx.application.Application
-import javafx.fxml.{FXMLLoader, Initializable}
-import javafx.scene.{Parent, Scene}
+import javafx.fxml.{FXML, FXMLLoader, Initializable}
+import javafx.scene.{Parent, Scene, control}
 import javafx.stage.Stage
 
 import scala.util.control.NonFatal
@@ -45,12 +46,88 @@ class CalculatorFX extends javafx.application.Application {
 
 }
 
-class CalculatorFxController extends Initializable {
+class CalculatorFxController() extends Initializable {
   override def initialize(location: URL, resources: ResourceBundle) = {
 
   }
 
-  def sgn() : Unit = {
+  //numbers
+  def numberNine() : Unit = {
+    
+  }
+  def numberEight() : Unit = {
     println("an event has happened")
   }
+  def numberSeven() : Unit = {
+    println("an event has happened")
+  }
+  def numberSix() : Unit = {
+    println("an event has happened")
+  }
+  def numberFive() : Unit = {
+    println("an event has happened")
+  }
+  def numberFour() : Unit = {
+    println("an event has happened")
+  }
+  def numberThree() : Unit = {
+    println("an event has happened")
+  }
+  def numberTwo() : Unit = {
+    println("an event has happened")
+  }
+  def numberOne() : Unit = {
+    println("an event has happened")
+  }
+  def numberZero() : Unit = {
+    println("an event has happened")
+  }
+
+  // Operators
+  def plus() : Unit = {
+    println("an event has happened")
+  }
+  def minus() : Unit = {
+    println("an event has happened")
+  }
+  def divide() : Unit = {
+    println("an event has happened")
+  }
+  def multiply() : Unit = {
+    println("an event has happened")
+  }
+  def enter() : Unit = {
+    println("an event has happened")
+  }
+
+  // Special signs
+
+  def drop() : Unit = {
+    println("an event has happened")
+  }
+  def numberUp() : Unit = {
+    println("an event has happened")
+  }
+  def numberDown() : Unit = {
+    println("an event has happened")
+  }
+  def smth() : Unit = {
+    println("an event has happened")
+  }
+
+
+  def clear() : Unit = {
+    println("an event has happened")
+  }
+  def percent() : Unit = {
+    println("an event has happened")
+  }
+  def changeSign() : Unit = {
+    println("an event has happened")
+  }
+
+  def comma() : Unit = {
+    println("an event has happened")
+  }
+
 }

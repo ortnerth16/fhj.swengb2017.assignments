@@ -9,51 +9,26 @@
 	-fx-background-color:#696969;
 }
 
-#calculator .round-red {
-    -fx-background-color: linear-gradient(#ff5400, #be1d00);
-    -fx-background-radius: 30;
-    -fx-background-insets: 0;
-    -fx-text-fill: white;
-}
 #calculator .bevel-grey {
     -fx-background-color:
         linear-gradient(#f2f2f2, #d6d6d6),
         linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
-        linear-gradient(#dddddd 0%, #f6f6f6 50%);
-    -fx-background-insets: 0,1,2;
+        linear-gradient(#dddddd 50%, #f6f6f6 100%);
+    -fx-background-insets: 0,1,1.5;
     -fx-text-fill: black;
-    -fx-font-size: 14px;
+    -fx-font-size: 20px;
 }
-#calculator .glass-grey {
-    -fx-background-color:
-        #c3c4c4,
-        linear-gradient(#d6d6d6 50%, white 100%),
-        radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);
-    -fx-background-radius: 30;
-    -fx-background-insets: 0,1,1;
-    -fx-text-fill: black;
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1 );
-}
+
+
 #calculator .shiny-orange {
     -fx-background-color:
-        linear-gradient(#ffd65b, #e68400),
-        linear-gradient(#ffef84, #f2ba44),
-        linear-gradient(#ffea6a, #efaa22),
-        linear-gradient(#ffe657 0%, #f8c202 50%, #eea10b 100%),
-        linear-gradient(from 0% 0% to 15% 50%, rgba(255,255,255,0.9), rgba(255,255,255,0));
+            linear-gradient(#f2f2f2, #d6d6d6),
+            linear-gradient(#ffe657 0%, #f8c202 20%, #eea10b 100%),
+            linear-gradient(#FFA741 0%, #FF9F30 50%);
+        -fx-background-insets: 0,1,1.5;
+        -fx-text-fill: white;
+        -fx-font-size: 25px;
 
-    -fx-background-insets: 0,1,2,3,0;
-    -fx-text-fill: #654b00;
-    -fx-font-weight: bold;
-    -fx-font-size: 14px;
-    -fx-padding: 10 20 10 20;
-}
-#calculator .dark-blue {
-    -fx-background-color: #696969;
-    -fx-background-insets: 0,1,2,0;
-    -fx-text-fill: black;
-
-    -fx-padding: 10 20 10 20;
 }
 
 
@@ -62,7 +37,7 @@
             linear-gradient(#f2f2f2, #d6d6d6),
             linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
             linear-gradient(#A9A9A9 0%, #C0C0C0 50%);
-        -fx-background-insets: 0,1,2;
+        -fx-background-insets: 0,1,1.5;
         -fx-text-fill: black;
-        -fx-font-size: 14px;
+        -fx-font-size: 17px;
 }
