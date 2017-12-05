@@ -6,8 +6,13 @@ import java.util.ResourceBundle
 import javafx.application.Application
 import javafx.fxml.{FXML, FXMLLoader, Initializable}
 import javafx.scene.{Parent, Scene, control}
+import javafx.beans.property.{ObjectProperty, SimpleObjectProperty}
+import javafx.fxml.{FXML, FXMLLoader, Initializable}
+import javafx.scene.control.TextField
+import javafx.scene.{Parent, Scene}
 import javafx.stage.Stage
 
+import scala.util.{Failure, Success}
 import scala.util.control.NonFatal
 
 object CalculatorApp {
@@ -20,7 +25,7 @@ object CalculatorApp {
 class CalculatorFX extends javafx.application.Application {
 
   val fxml = "/at/fhj/swengb/apps/calculator/calculator.fxml"
-  val css =  "/at/fhj/swengb/apps/calculator/calculator.css"
+  val css = "/at/fhj/swengb/apps/calculator/calculator.css"
 
   def mkFxmlLoader(fxml: String): FXMLLoader = {
     new FXMLLoader(getClass.getResource(fxml))
@@ -46,7 +51,16 @@ class CalculatorFX extends javafx.application.Application {
 
 }
 
-class CalculatorFxController() extends Initializable {
+class CalculatorFxController extends Initializable {
+
+  val calculatorProperty: ObjectProperty[RpnCalculator] = new SimpleObjectProperty[RpnCalculator](RpnCalculator())
+
+  def getCalculator() : RpnCalculator = calculatorProperty.get()
+
+  def setCalculator(rpnCalculator : RpnCalculator) : Unit = calculatorProperty.set(rpnCalculator)
+
+  @FXML var numberTextField : TextField = _
+
   override def initialize(location: URL, resources: ResourceBundle) = {
 
   }
@@ -83,6 +97,12 @@ class CalculatorFxController() extends Initializable {
     println("an event has happened")
   }
 
+  def sgn(): Unit = {
+    getCalculator().push(Op(numberTextField.getText)) match {
+      case Success(c) => setCalculator(c)
+      case Failure(e) => // show warning / error
+    }
+    getCalculator().stack foreach println
   // Operators
   def plus() : Unit = {
     println("an event has happened")
@@ -129,5 +149,7 @@ class CalculatorFxController() extends Initializable {
   def comma() : Unit = {
     println("an event has happened")
   }
+
+
 
 }
