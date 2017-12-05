@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<?import javafx.scene.control.TextField?>
 <GridPane id="calculator" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" styleClass="gridpane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.fhj.swengb.apps.calculator.CalculatorFxController">
     <children>
-        <Button mnemonicParsing="false" onAction="#smth" prefHeight="50.0" prefWidth="100.0" styleClass="lion" text="x &#8596; y" GridPane.columnIndex="2" GridPane.rowIndex="3">
+        <Button mnemonicParsing="false" onAction="#smth" prefHeight="50.0" prefWidth="100.0" styleClass="lion" text="x ↔ y" GridPane.columnIndex="2" GridPane.rowIndex="3">
         </Button>
-        <Button mnemonicParsing="false" onAction="#numberUp" prefHeight="50.0" prefWidth="100.0" styleClass="lion" text="R &#8593;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+        <Button mnemonicParsing="false" onAction="#numberUp" prefHeight="50.0" prefWidth="100.0" styleClass="lion" text="R ↑" GridPane.columnIndex="3" GridPane.rowIndex="3">
         </Button>
-        <Button mnemonicParsing="false" onAction="#numberDown" prefHeight="50.0" prefWidth="100.0" styleClass="lion" text="R &#8595;" GridPane.columnIndex="4" GridPane.rowIndex="3">
+        <Button mnemonicParsing="false" onAction="#numberDown" prefHeight="50.0" prefWidth="100.0" styleClass="lion" text="R ↓" GridPane.columnIndex="4" GridPane.rowIndex="3">
         </Button>
         <Button mnemonicParsing="false" onAction="#drop" prefHeight="50.0" prefWidth="100.0" styleClass="lion" text="drop" GridPane.columnIndex="5" GridPane.rowIndex="3">
         </Button>
@@ -55,10 +54,11 @@
         </Button>
         <Button mnemonicParsing="false" onAction="#enter" prefHeight="100.0" prefWidth="100.0" styleClass="shiny-orange" text="=" GridPane.columnIndex="5" GridPane.rowIndex="8">
         </Button>
-        <TextField GridPane.columnIndex="2" GridPane.rowIndex="0" GridPane.columnSpan="5" style="-fx-background-color: #A9A9A9" prefHeight="200" editable="false" fx:id="output"/>
+        <TextField fx:id="output" alignment="CENTER_RIGHT" editable="false" prefHeight="200" styleClass="textField" GridPane.columnIndex="2" GridPane.columnSpan="5" GridPane.rowIndex="0" />
 
     </children>
    <columnConstraints>
+      <ColumnConstraints />
       <ColumnConstraints />
       <ColumnConstraints />
       <ColumnConstraints />

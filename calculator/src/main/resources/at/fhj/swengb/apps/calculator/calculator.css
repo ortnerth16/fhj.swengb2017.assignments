@@ -41,3 +41,9 @@
         -fx-text-fill: black;
         -fx-font-size: 17px;
 }
+
+#calculator .textField {
+    -fx-background-color: A9A9A9;
+    -fx-font-size: 30px;
+
+}
