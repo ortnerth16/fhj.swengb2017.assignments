@@ -2,9 +2,48 @@
 // see http://fxexperience.com/2011/12/styling-fx-buttons-with-css/
 
 #calculator {
-	-fx-background-color:#00ff00;
+	-fx-background-color:#ffffff;
 }
 
 #calculator .grey {
-	-fx-background-color:#ff00ff;
+	-fx-background-color:#696969;
+}
+
+#calculator .bevel-grey {
+    -fx-background-color:
+        linear-gradient(#f2f2f2, #d6d6d6),
+        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+        linear-gradient(#dddddd 50%, #f6f6f6 100%);
+    -fx-background-insets: 0,1,1.5;
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+}
+
+
+#calculator .shiny-orange {
+    -fx-background-color:
+            linear-gradient(#f2f2f2, #d6d6d6),
+            linear-gradient(#ffe657 0%, #f8c202 20%, #eea10b 100%),
+            linear-gradient(#FFA741 0%, #FF9F30 50%);
+        -fx-background-insets: 0,1,1.5;
+        -fx-text-fill: white;
+        -fx-font-size: 25px;
+
+}
+
+
+#calculator .lion {
+    -fx-background-color:
+            linear-gradient(#f2f2f2, #d6d6d6),
+            linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+            linear-gradient(#A9A9A9 0%, #C0C0C0 50%);
+        -fx-background-insets: 0,1,1.5;
+        -fx-text-fill: black;
+        -fx-font-size: 17px;
+}
+
+#calculator .textField {
+    -fx-background-color: A9A9A9;
+    -fx-font-size: 30px;
+
 }
