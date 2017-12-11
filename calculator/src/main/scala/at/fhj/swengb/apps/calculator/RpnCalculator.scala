@@ -24,9 +24,8 @@ object RpnCalculator {
     if (s == "")
       Try(calc)
     else {
-      //val help = s.split(" ")
-      //calc.push(test)
-      Try(calc)
+      val help: List[Op] = s.split(' ').map(a => Op(a)).toList
+      calc.push(help)
     }
 
   }
@@ -46,9 +45,27 @@ object RpnCalculator {
       * @return
       */
     def push(op: Op): Try[RpnCalculator] = {
-      //push(stack)
-      //stack +: op
-      Try(this)
+      op match {
+        case x : Val => Try(RpnCalculator(stack :+ x))
+        case bo : BinOp => {
+
+          def getVal(calculator: RpnCalculator): Val = {
+            val value = calculator.pop()._1
+            value match {
+              case x: Val => x
+              case _ : BinOp => throw new NoSuchElementException
+            }
+          }
+
+          val value1 = getVal(this)
+          var remainingCalc = pop()._2
+          val value2 = getVal(remainingCalc)
+          remainingCalc = remainingCalc.pop()._2
+
+          remainingCalc.push(bo.eval(value1, value2))
+        }
+      }
+
     }
 
     /**
@@ -59,14 +76,14 @@ object RpnCalculator {
       * @param op
       * @return
       */
-    def push(op: Seq[Op]): Try[RpnCalculator] = ???
+    def push(op: Seq[Op]): Try[RpnCalculator] = Try(op.foldLeft(RpnCalculator()) ((acc, operation) => acc.push(operation).get))
 
     /**
       * Returns an tuple of Op and a RevPolCal instance with the remainder of the stack.
       *
       * @return
       */
-    def pop(): (Op, RpnCalculator) = ???
+    def pop(): (Op, RpnCalculator) = (peek(), RpnCalculator(stack.init))
 
     /**
       * If stack is nonempty, returns the top of the stack. If it is empty, this function throws a NoSuchElementException.
@@ -75,9 +92,9 @@ object RpnCalculator {
       */
     def peek(): Op = {
       if (stack.nonEmpty)
-        stack.head
+        stack.last
       else
-        throw new NoSuchElementException("empty")
+        throw new NoSuchElementException
     }
 
     /**

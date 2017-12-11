@@ -15,5 +15,11 @@
 | 2
 | Finished the GUI and implemented some button functionality
 
+| 9.12.17
+| 3
+| Implemented some basic functionality to pass a few tests
 
+| 11.12.17
+| 3
+| Implemented the missing functionality and passed all tests
 |===
