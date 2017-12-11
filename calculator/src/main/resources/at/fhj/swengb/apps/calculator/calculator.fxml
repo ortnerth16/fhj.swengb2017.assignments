@@ -5,56 +5,75 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <GridPane id="calculator" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" styleClass="gridpane" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.fhj.swengb.apps.calculator.CalculatorFxController">
     <children>
-        <Button mnemonicParsing="false" onAction="#smth" prefHeight="50.0" prefWidth="100.0" styleClass="lion" text="x ↔ y" GridPane.columnIndex="2" GridPane.rowIndex="3">
+
+
+        <Button mnemonicParsing="false" onAction="#clear" prefHeight="100.0" prefWidth="100.0" styleClass="rich-blue" text="C" GridPane.columnIndex="2" GridPane.rowIndex="4">
         </Button>
-        <Button mnemonicParsing="false" onAction="#numberUp" prefHeight="50.0" prefWidth="100.0" styleClass="lion" text="R ↑" GridPane.columnIndex="3" GridPane.rowIndex="3">
+        <Button mnemonicParsing="false" onAction="#sgn" prefHeight="100.0" prefWidth="100.0" styleClass="rich-blue" text="+/-" GridPane.columnIndex="3" GridPane.rowIndex="4">
         </Button>
-        <Button mnemonicParsing="false" onAction="#numberDown" prefHeight="50.0" prefWidth="100.0" styleClass="lion" text="R ↓" GridPane.columnIndex="4" GridPane.rowIndex="3">
+        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" styleClass="rich-blue" text="\%" GridPane.columnIndex="4" GridPane.rowIndex="4">
         </Button>
-        <Button mnemonicParsing="false" onAction="#drop" prefHeight="50.0" prefWidth="100.0" styleClass="lion" text="drop" GridPane.columnIndex="5" GridPane.rowIndex="3">
+        <Button mnemonicParsing="false" onAction="#divide" prefHeight="100.0" prefWidth="100.0" styleClass="rich-blue" text="/" GridPane.columnIndex="5" GridPane.rowIndex="4">
         </Button>
-        <Button mnemonicParsing="false" onAction="#clear" prefHeight="100.0" prefWidth="100.0" styleClass="bevel-grey" text="C" GridPane.columnIndex="2" GridPane.rowIndex="4">
+        <Button mnemonicParsing="false" onAction="#numSeven" prefHeight="100.0" prefWidth="100.0" styleClass="#windows7-default" text="7" GridPane.columnIndex="2" GridPane.rowIndex="5">
+         <font>
+            <Font size="21.0" />
+         </font></Button>
+        <Button mnemonicParsing="false" onAction="#numEight" prefHeight="100.0" prefWidth="100.0" styleClass="#windows7-default" text="8" GridPane.columnIndex="3" GridPane.rowIndex="5">
+         <font>
+            <Font size="21.0" />
+         </font></Button>
+        <Button mnemonicParsing="false" onAction="#numNine" prefHeight="100.0" prefWidth="100.0" styleClass="#windows7-default" text="9" GridPane.columnIndex="4" GridPane.rowIndex="5">
+         <font>
+            <Font size="21.0" />
+         </font></Button>
+        <Button mnemonicParsing="false" onAction="#multiply" prefHeight="100.0" prefWidth="100.0" styleClass="rich-blue" text="*" GridPane.columnIndex="5" GridPane.rowIndex="5">
         </Button>
-        <Button mnemonicParsing="false" onAction="#changeSign" prefHeight="100.0" prefWidth="100.0" styleClass="bevel-grey" text="+/-" GridPane.columnIndex="3" GridPane.rowIndex="4">
+        <Button mnemonicParsing="false" onAction="#numFour" prefHeight="100.0" prefWidth="100.0" styleClass="#windows7-default" text="4" GridPane.columnIndex="2" GridPane.rowIndex="6">
+         <font>
+            <Font size="21.0" />
+         </font></Button>
+        <Button mnemonicParsing="false" onAction="#numFive" prefHeight="100.0" prefWidth="100.0" styleClass="#windows7-default" text="5" GridPane.columnIndex="3" GridPane.rowIndex="6">
+         <font>
+            <Font size="21.0" />
+         </font></Button>
+        <Button mnemonicParsing="false" onAction="#numSix" prefHeight="100.0" prefWidth="100.0" styleClass="#windows7-default" text="6" GridPane.columnIndex="4" GridPane.rowIndex="6">
+         <font>
+            <Font size="21.0" />
+         </font></Button>
+        <Button mnemonicParsing="false" onAction="#subtract" prefHeight="100.0" prefWidth="100.0" styleClass="rich-blue" text="-" GridPane.columnIndex="5" GridPane.rowIndex="6">
         </Button>
-        <Button mnemonicParsing="false" onAction="#percent" prefHeight="100.0" prefWidth="100.0" styleClass="bevel-grey" text="\%" GridPane.columnIndex="4" GridPane.rowIndex="4">
+        <Button mnemonicParsing="false" onAction="#numOne" prefHeight="100.0" prefWidth="100.0" styleClass="#windows7-default" text="1" GridPane.columnIndex="2" GridPane.rowIndex="7">
+         <font>
+            <Font size="21.0" />
+         </font></Button>
+        <Button mnemonicParsing="false" onAction="#numTwo" prefHeight="100.0" prefWidth="100.0" styleClass="#windows7-default" text="2" GridPane.columnIndex="3" GridPane.rowIndex="7">
+         <font>
+            <Font size="21.0" />
+         </font></Button>
+        <Button mnemonicParsing="false" onAction="#numThree" prefHeight="100.0" prefWidth="100.0" styleClass="#windows7-default" text="3" GridPane.columnIndex="4" GridPane.rowIndex="7">
+         <font>
+            <Font size="21.0" />
+         </font></Button>
+        <Button mnemonicParsing="false" onAction="#add" prefHeight="100.0" prefWidth="100.0" styleClass="rich-blue" text="+" GridPane.columnIndex="5" GridPane.rowIndex="7">
         </Button>
-        <Button mnemonicParsing="false" onAction="#divide" prefHeight="100.0" prefWidth="100.0" styleClass="shiny-orange" text="/" GridPane.columnIndex="5" GridPane.rowIndex="4">
+        <Button mnemonicParsing="false" onAction="#numZero" prefHeight="100.0" prefWidth="200.0" styleClass="#windows7-default" text="0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="8">
+         <font>
+            <Font size="21.0" />
+         </font></Button>
+        <Button mnemonicParsing="false" onAction="#comma" prefHeight="100.0" prefWidth="100.0" styleClass="#windows7-default" text="." GridPane.columnIndex="4" GridPane.rowIndex="8">
+         <font>
+            <Font size="21.0" />
+         </font></Button>
+        <Button mnemonicParsing="false" onAction="#enter" prefHeight="100.0" prefWidth="100.0" styleClass="rich-blue" text="=" GridPane.columnIndex="5" GridPane.rowIndex="8">
         </Button>
-        <Button mnemonicParsing="false" onAction="#numberSeven" prefHeight="100.0" prefWidth="100.0" styleClass="bevel-grey" text="7" GridPane.columnIndex="2" GridPane.rowIndex="5">
-        </Button>
-        <Button mnemonicParsing="false" onAction="#numberEight" prefHeight="100.0" prefWidth="100.0" styleClass="bevel-grey" text="8" GridPane.columnIndex="3" GridPane.rowIndex="5">
-        </Button>
-        <Button mnemonicParsing="false" onAction="#numberNine" prefHeight="100.0" prefWidth="100.0" styleClass="bevel-grey" text="9" GridPane.columnIndex="4" GridPane.rowIndex="5">
-        </Button>
-        <Button mnemonicParsing="false" onAction="#multiply" prefHeight="100.0" prefWidth="100.0" styleClass="shiny-orange" text="*" GridPane.columnIndex="5" GridPane.rowIndex="5">
-        </Button>
-        <Button mnemonicParsing="false" onAction="#numberFour" prefHeight="100.0" prefWidth="100.0" styleClass="bevel-grey" text="4" GridPane.columnIndex="2" GridPane.rowIndex="6">
-        </Button>
-        <Button mnemonicParsing="false" onAction="#numberFive" prefHeight="100.0" prefWidth="100.0" styleClass="bevel-grey" text="5" GridPane.columnIndex="3" GridPane.rowIndex="6">
-        </Button>
-        <Button mnemonicParsing="false" onAction="#numberSix" prefHeight="100.0" prefWidth="100.0" styleClass="bevel-grey" text="6" GridPane.columnIndex="4" GridPane.rowIndex="6">
-        </Button>
-        <Button mnemonicParsing="false" onAction="#minus" prefHeight="100.0" prefWidth="100.0" styleClass="shiny-orange" text="-" GridPane.columnIndex="5" GridPane.rowIndex="6">
-        </Button>
-        <Button mnemonicParsing="false" onAction="#numberOne" prefHeight="100.0" prefWidth="100.0" styleClass="bevel-grey" text="1" GridPane.columnIndex="2" GridPane.rowIndex="7">
-        </Button>
-        <Button mnemonicParsing="false" onAction="#numberTwo" prefHeight="100.0" prefWidth="100.0" styleClass="bevel-grey" text="2" GridPane.columnIndex="3" GridPane.rowIndex="7">
-        </Button>
-        <Button mnemonicParsing="false" onAction="#numberThree" prefHeight="100.0" prefWidth="100.0" styleClass="bevel-grey" text="3" GridPane.columnIndex="4" GridPane.rowIndex="7">
-        </Button>
-        <Button mnemonicParsing="false" onAction="#plus" prefHeight="100.0" prefWidth="100.0" styleClass="shiny-orange" text="+" GridPane.columnIndex="5" GridPane.rowIndex="7">
-        </Button>
-        <Button mnemonicParsing="false" onAction="#numberZero" prefHeight="100.0" prefWidth="200.0" styleClass="bevel-grey" text="0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="8">
-        </Button>
-        <Button mnemonicParsing="false" onAction="#comma" prefHeight="100.0" prefWidth="100.0" styleClass="bevel-grey" text="." GridPane.columnIndex="4" GridPane.rowIndex="8">
-        </Button>
-        <Button mnemonicParsing="false" onAction="#enter" prefHeight="100.0" prefWidth="100.0" styleClass="shiny-orange" text="=" GridPane.columnIndex="5" GridPane.rowIndex="8">
-        </Button>
-        <TextField fx:id="output" alignment="CENTER_RIGHT" editable="false" prefHeight="200" styleClass="textField" GridPane.columnIndex="2" GridPane.columnSpan="5" GridPane.rowIndex="0" />
+        <TextField fx:id="numberTextField1" alignment="CENTER_RIGHT" editable="false" prefHeight="35" styleClass="textField" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="0" />
+        <TextField fx:id="numberTextField2" alignment="CENTER_RIGHT" editable="false" prefHeight="35" styleClass="textField" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="1" />
+        <TextField fx:id="numberTextField3" alignment="CENTER_RIGHT" editable="false" prefHeight="35" styleClass="textField" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="2" />
 
     </children>
     <columnConstraints>
@@ -65,6 +84,7 @@
         <ColumnConstraints />
         <ColumnConstraints />
         <ColumnConstraints />
+      <ColumnConstraints />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints />
