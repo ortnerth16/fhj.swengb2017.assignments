@@ -6,7 +6,7 @@ import at.fhj.swengb.apps.battleship.BattleShipProtocol
 import org.scalacheck.{Gen, Prop}
 import org.scalatest.WordSpecLike
 import org.scalatest.prop.Checkers
-
+import scala.collection.JavaConverters._
 
 class BattleShipGameProtocolSpec extends WordSpecLike {
 
@@ -48,8 +48,34 @@ class BattleShipGameProtocolSpec extends WordSpecLike {
 
       assert(actualVessel.getSize == expectedVessel.size)
     }
-   /* ".convert(fleet : Fleet)" in {
-      val expectedFleet = Fleet(vessels = )
-    }*/
+
+    ".convert(fleet : Fleet)" in {
+      val expectedFleet = Fleet(Set(Vessel(NonEmptyString("Peter"), BattlePos(0,0), Horizontal, 2),
+                                    Vessel(NonEmptyString("Hans"), BattlePos(6,4), Vertical, 4)))
+
+      val actualFleet : BattleShipProtobuf.Fleet = BattleShipProtocol.convert(expectedFleet)
+
+      assert(expectedFleet == BattleShipProtocol.convert(actualFleet))
+    }
+
+    ".convert(battlefield : BattleField)" in {
+      val expectedBattlefield = BattleField(30, 30, Fleet(Set(Vessel(NonEmptyString("Peter"), BattlePos(0,0), Horizontal, 2),
+                                                              Vessel(NonEmptyString("Hans"), BattlePos(6,4), Vertical, 4))))
+
+      val actualBattlefield : BattleShipProtobuf.BattleField = BattleShipProtocol.convert(expectedBattlefield)
+
+      assert(expectedBattlefield.width == actualBattlefield.getWith)
+      assert(expectedBattlefield.height == actualBattlefield.getHeight)
+      assert(expectedBattlefield.fleet == BattleShipProtocol.convert(actualBattlefield.getFleet))
+    }
+
+    ".convert(battleshipgame : BattleShipGame)" in {
+      val battlefield = BattleField(30, 30, Fleet(FleetConfig.Standard))
+      val expectedGame = BattleShipGame(battlefield, (x : Int) => x.toDouble, (x:Int) => x.toDouble, x => ())
+
+      val actualGame : BattleShipProtobuf.BattleShipGame = BattleShipProtocol.convert(expectedGame)
+
+      assert(expectedGame.battleField == BattleShipProtocol.convert(actualGame.getBattlefield))
+    }
   }
 }

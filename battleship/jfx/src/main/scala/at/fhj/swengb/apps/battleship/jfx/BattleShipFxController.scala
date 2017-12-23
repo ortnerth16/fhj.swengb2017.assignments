@@ -1,11 +1,13 @@
 package at.fhj.swengb.apps.battleship.jfx
 
 import java.net.URL
+import java.nio.file.{Files, Paths}
 import java.util.ResourceBundle
 import javafx.fxml.{FXML, Initializable}
 import javafx.scene.control.TextArea
 import javafx.scene.layout.GridPane
 
+import at.fhj.swengb.apps.battleship.BattleShipProtocol
 import at.fhj.swengb.apps.battleship.model.{BattleField, BattleShipGame, Fleet, FleetConfig}
 
 
@@ -13,6 +15,7 @@ class BattleShipFxController extends Initializable {
 
 
   @FXML private var battleGroundGridPane: GridPane = _
+  var battleshipGame: BattleShipGame = _
 
   /**
     * A text area box to place the history of the game
@@ -21,6 +24,10 @@ class BattleShipFxController extends Initializable {
 
   @FXML
   def newGame(): Unit = initGame()
+
+  def saveGame(): Unit = saveGameState()
+
+  def loadGame(): Unit = loadGameState()
 
   override def initialize(url: URL, rb: ResourceBundle): Unit = initGame()
 
@@ -39,7 +46,8 @@ class BattleShipFxController extends Initializable {
     * - placing your ships at random on the battleground
     *
     */
-  def init(game : BattleShipGame) : Unit = {
+  def init(game: BattleShipGame): Unit = {
+    battleshipGame = game
     battleGroundGridPane.getChildren.clear()
     for (c <- game.getCells) {
       battleGroundGridPane.add(c, c.pos.x, c.pos.y)
@@ -62,4 +70,23 @@ class BattleShipFxController extends Initializable {
     BattleShipGame(battleField, getCellWidth, getCellHeight, appendLog)
   }
 
+  def saveGameState(): Unit = {
+
+    val savedGame = BattleShipProtocol.convert(battleshipGame)
+    val path = Paths.get("target/BattleShipProtobuf.bin")
+
+    savedGame.writeTo(Files.newOutputStream(path))
+    appendLog("Saved the game")
+
+  }
+
+  def loadGameState(): Unit = {
+
+    val savedGame = BattleShipProtocol.convert(battleshipGame)
+    val path = Paths.get("target/BattleShipProtobuf.bin")
+
+    savedGame.writeTo(Files.newOutputStream(path))
+    appendLog("Saved the game")
+
+  }
 }

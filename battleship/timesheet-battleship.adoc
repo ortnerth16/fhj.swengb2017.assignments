@@ -15,6 +15,10 @@
 | 2
 | Implemented .proto file
 
-
+| krassers16
+| 23.12.2017
+| 4
+| 3
+| Implemented converter functions and some tests
 
 |===
