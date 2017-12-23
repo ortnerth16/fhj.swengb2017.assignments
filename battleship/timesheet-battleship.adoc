@@ -21,4 +21,10 @@
 | 3
 | Implemented converter functions and some tests
 
+| grainerm15
+| 23.12.2017
+| 3
+| 2
+| implemented save function; started with load function (able to reload old settings of ships)
+
 |===

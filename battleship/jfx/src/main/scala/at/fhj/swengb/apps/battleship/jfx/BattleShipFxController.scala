@@ -1,20 +1,23 @@
 package at.fhj.swengb.apps.battleship.jfx
 
 import java.net.URL
-import java.nio.file.{Files, Paths}
 import java.util.ResourceBundle
 import javafx.fxml.{FXML, Initializable}
 import javafx.scene.control.TextArea
 import javafx.scene.layout.GridPane
+import java.nio.file.{Files, Paths}
 
-import at.fhj.swengb.apps.battleship.BattleShipProtocol
 import at.fhj.swengb.apps.battleship.model.{BattleField, BattleShipGame, Fleet, FleetConfig}
+import at.fhj.swengb.apps.battleship.BattleShipProtobuf
+import at.fhj.swengb.apps.battleship.BattleShipProtocol._
+
 
 
 class BattleShipFxController extends Initializable {
 
 
   @FXML private var battleGroundGridPane: GridPane = _
+
   var battleshipGame: BattleShipGame = _
 
   /**
@@ -70,23 +73,24 @@ class BattleShipFxController extends Initializable {
     BattleShipGame(battleField, getCellWidth, getCellHeight, appendLog)
   }
 
+
   def saveGameState(): Unit = {
 
-    val savedGame = BattleShipProtocol.convert(battleshipGame)
-    val path = Paths.get("target/BattleShipProtobuf.bin")
+    convert(battleshipGame).writeTo(Files.newOutputStream(Paths.get("battleship/BattleShipProtobuf.bin")))
 
-    savedGame.writeTo(Files.newOutputStream(path))
     appendLog("Saved the game")
 
   }
 
   def loadGameState(): Unit = {
 
-    val savedGame = BattleShipProtocol.convert(battleshipGame)
-    val path = Paths.get("target/BattleShipProtobuf.bin")
+    val reload = BattleShipProtobuf.BattleShipGame.parseFrom(Files.newInputStream(Paths.get("battleship/BattleShipProtobuf.bin")))
 
-    savedGame.writeTo(Files.newOutputStream(path))
-    appendLog("Saved the game")
+    val gameWithOldValues = BattleShipGame(convert(reload).battleField, getCellWidth, getCellHeight, appendLog)
+
+    init(gameWithOldValues)
+
+    appendLog("Loaded the game")
 
   }
 }
