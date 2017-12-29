@@ -27,4 +27,22 @@
 | 2
 | implemented save function; started with load function (able to reload old settings of ships)
 
+| krassers16, grainerm15
+| 27.12.2017
+| 2
+| 4
+| tried to finish load function; tried basic css settings
+
+| krassers16, grainerm15
+| 28.12.2017
+| 2
+| 3
+| tried to finish load function (again); finished css
+
+| grainerm15
+| 28.12.2017
+| 2
+| 1
+| finally finished load function; adapted css
+
 |===

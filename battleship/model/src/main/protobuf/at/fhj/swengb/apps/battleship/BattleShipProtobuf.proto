@@ -5,6 +5,9 @@ package at.fhj.swengb.apps.battleship;
 option java_package         = "at.fhj.swengb.apps.battleship";
 option java_outer_classname = "BattleShipProtobuf";
 
+// We created a message for every object in the game which has to be saved
+
+// We used an enum for Direction because we didn't really find an alternative for a trait
 enum Direction {
     Horizontal = 0;
     Vertical = 1;
@@ -32,9 +35,12 @@ message BattleField {
     Fleet fleet = 3;
 }
 
+// The cells attribute contains the clicked cells
 message BattleShipGame {
     BattleField battlefield = 1;
     double cellWidth = 2;
     double cellHeight = 3;
     string log = 4;
+    repeated BattlePos cells = 5;
+
 }

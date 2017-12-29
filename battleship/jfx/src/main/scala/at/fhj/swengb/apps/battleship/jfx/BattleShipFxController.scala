@@ -7,7 +7,7 @@ import javafx.scene.control.TextArea
 import javafx.scene.layout.GridPane
 import java.nio.file.{Files, Paths}
 
-import at.fhj.swengb.apps.battleship.model.{BattleField, BattleShipGame, Fleet, FleetConfig}
+import at.fhj.swengb.apps.battleship.model._
 import at.fhj.swengb.apps.battleship.BattleShipProtobuf
 import at.fhj.swengb.apps.battleship.BattleShipProtocol._
 
@@ -87,10 +87,11 @@ class BattleShipFxController extends Initializable {
     val reload = BattleShipProtobuf.BattleShipGame.parseFrom(Files.newInputStream(Paths.get("battleship/BattleShipProtobuf.bin")))
 
     val gameWithOldValues = BattleShipGame(convert(reload).battleField, getCellWidth, getCellHeight, appendLog)
-
+    gameWithOldValues.gameState = convert(reload).gameState
     init(gameWithOldValues)
-
+    gameWithOldValues.update(battleshipGame.gameState.length)
     appendLog("Loaded the game")
+
 
   }
 }

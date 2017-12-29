@@ -7,13 +7,13 @@ import at.fhj.swengb.apps.battleship.model._
 object BattleShipProtocol {
 
   // Convert to BattleShipProtobuf
-
   def convert(g: BattleShipGame): BattleShipProtobuf.BattleShipGame = {
     BattleShipProtobuf.BattleShipGame.newBuilder()
       .setBattlefield(convert(g.battleField))
       .setCellWidth(g.battleField.width)
       .setCellHeight(g.battleField.height)
-      .setLog(g.log.toString()).build()
+      .setLog(g.log.toString())
+      .addAllCells(g.gameState.map(convert).asJava).build()
 
   }
 
@@ -64,7 +64,12 @@ object BattleShipProtocol {
 
   def convert(g: BattleShipProtobuf.BattleField) : BattleField = BattleField(g.getWith, g.getHeight, convert(g.getFleet))
 
-  def convert(g: BattleShipProtobuf.BattleShipGame): BattleShipGame = BattleShipGame(convert(g.getBattlefield), (x: Int) => x.toDouble, (x: Int) => x.toDouble, x => ())
+  def convert(g: BattleShipProtobuf.BattleShipGame): BattleShipGame = {
+
+    val battleship = BattleShipGame(convert(g.getBattlefield), (x: Int) => x.toDouble, (x: Int) => x.toDouble, x => ())
+    g.getCellsList.asScala.map(x => convert(x)).foreach(battleship.clickedCells)
+    battleship
+  }
 
   def convert(g: BattleShipProtobuf.BattlePos): BattlePos = BattlePos(g.getX, g.getY)
 }
