@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea
 import javafx.scene.layout.GridPane
 import java.nio.file.{Files, Paths}
 
+
 import at.fhj.swengb.apps.battleship.model._
 import at.fhj.swengb.apps.battleship.BattleShipProtobuf
 import at.fhj.swengb.apps.battleship.BattleShipProtocol._
@@ -14,6 +15,8 @@ import at.fhj.swengb.apps.battleship.BattleShipProtocol._
 
 
 class BattleShipFxController extends Initializable {
+
+  @FXML private var welcomeGrid: GridPane = _
 
 
   @FXML private var battleGroundGridPane: GridPane = _
@@ -95,3 +98,10 @@ class BattleShipFxController extends Initializable {
 
   }
 }
+
+
+
+
+
+
+

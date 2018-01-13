@@ -10,6 +10,13 @@
     -fx-background-color: rgba(255,255,255,0.5);
     -fx-opacity: 0.8
 }
+
+.grid_welcome {
+    -fx-background-image: url("eisbär.jpg");
+    -fx-background-color: rgba(255,255,255,0.5);
+    -fx-opacity: 0.8
+    }
+
 .button {
     -fx-background-color:
                 linear-gradient(#f2f2f2, #d6d6d6),
