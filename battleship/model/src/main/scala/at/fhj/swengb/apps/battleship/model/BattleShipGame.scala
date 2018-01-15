@@ -6,7 +6,8 @@ package at.fhj.swengb.apps.battleship.model
 case class BattleShipGame(battleField: BattleField,
                           getCellWidth: Int => Double,
                           getCellHeight: Int => Double,
-                          log: String => Unit
+                          log: String => Unit,
+                          player: String
                           ) {
 
   /**

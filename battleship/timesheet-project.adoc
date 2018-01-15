@@ -1,0 +1,19 @@
+== Time expenditure: battleship assignment
+
+[cols="1,1,1, 1,4", options="header"]
+.Time expenditure
+|===
+| Student
+| Date
+| Estimated Hours
+| Actual Hours
+| Description
+
+| krassers16
+| 15.01.2018
+| 2
+| 2
+| Updated .proto file, updated filename for protobuf files, started to implement some multiplayer functinality
+
+
+|===

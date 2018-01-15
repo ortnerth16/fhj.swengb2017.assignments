@@ -1,12 +1,11 @@
 package at.fhj.swengb.apps.battleship.jfx
 
 import java.net.URL
-import java.util.ResourceBundle
+import java.util.{Calendar, ResourceBundle}
 import javafx.fxml.{FXML, Initializable}
 import javafx.scene.control.TextArea
 import javafx.scene.layout.GridPane
 import java.nio.file.{Files, Paths}
-
 
 import at.fhj.swengb.apps.battleship.model._
 import at.fhj.swengb.apps.battleship.BattleShipProtobuf
@@ -43,6 +42,10 @@ class BattleShipFxController extends Initializable {
 
   def appendLog(message: String): Unit = log.appendText(message + "\n")
 
+  private var player: String = _
+
+  private var filename: String = _
+
   /**
     * Create a new game.
     *
@@ -72,14 +75,16 @@ class BattleShipFxController extends Initializable {
     val field = BattleField(10, 10, Fleet(FleetConfig.Standard))
 
     val battleField: BattleField = BattleField.placeRandomly(field)
-
-    BattleShipGame(battleField, getCellWidth, getCellHeight, appendLog)
+    //player = scala.io.StdIn.readLine()
+    BattleShipGame(battleField, getCellWidth, getCellHeight, appendLog, "")
   }
 
 
   def saveGameState(): Unit = {
-
-    convert(battleshipGame).writeTo(Files.newOutputStream(Paths.get("battleship/BattleShipProtobuf.bin")))
+    val datetime = Calendar.getInstance().getTime
+    val test = datetime.toString.filterNot(x => x.isWhitespace ||  x.equals(':'))
+    filename = test
+    convert(battleshipGame).writeTo(Files.newOutputStream(Paths.get("battleship/"+filename+".bin")))
 
     appendLog("Saved the game")
 
@@ -87,9 +92,9 @@ class BattleShipFxController extends Initializable {
 
   def loadGameState(): Unit = {
 
-    val reload = BattleShipProtobuf.BattleShipGame.parseFrom(Files.newInputStream(Paths.get("battleship/BattleShipProtobuf.bin")))
+    val reload = BattleShipProtobuf.Game.BattleShipGame.parseFrom(Files.newInputStream(Paths.get("battleship/"+filename+".bin")))
 
-    val gameWithOldValues = BattleShipGame(convert(reload).battleField, getCellWidth, getCellHeight, appendLog)
+    val gameWithOldValues = BattleShipGame(convert(reload).battleField, getCellWidth, getCellHeight, appendLog, "")
     gameWithOldValues.gameState = convert(reload).gameState
     init(gameWithOldValues)
     gameWithOldValues.update(battleshipGame.gameState.length)

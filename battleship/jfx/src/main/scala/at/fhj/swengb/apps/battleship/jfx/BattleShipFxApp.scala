@@ -30,7 +30,7 @@ class BattleShipFxApp extends Application {
   val css = "/at/fhj/swengb/apps/battleship/jfx/battleship.css"
 
   override def start(stage: Stage): Unit = {
-    welcomeScreen match {
+    triedRoot match {
       case Success(root) =>
         stage.setScene(new Scene(root))
         stage.show()
