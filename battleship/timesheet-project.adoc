@@ -15,5 +15,10 @@
 | 2
 | Updated .proto file, updated filename for protobuf files, started to implement some multiplayer functinality
 
+| krassers16
+| 16.01.2018
+| 1.5
+| 2.5
+| Updated .proto file again, continued with implementing multiplayer functionality
 
 |===

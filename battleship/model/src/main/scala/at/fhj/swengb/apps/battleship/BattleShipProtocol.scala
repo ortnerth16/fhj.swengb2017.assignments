@@ -7,6 +7,13 @@ import at.fhj.swengb.apps.battleship.model._
 object BattleShipProtocol {
 
   // Convert to BattleShipProtobuf
+  def convert(g: GameRound): BattleShipProtobuf.Game = {
+    BattleShipProtobuf.Game.newBuilder()
+      .setGameA(convert(g.gameA))
+      .setGameB(convert(g.gameB))
+      .setName(g.gameName).build()
+  }
+
   def convert(g: BattleShipGame): BattleShipProtobuf.Game.BattleShipGame = {
     BattleShipProtobuf.Game.BattleShipGame.newBuilder()
       .setBattlefield(convert(g.battleField))

@@ -51,6 +51,8 @@ message Game {
     string name = 1;
     string date = 2;
     string winner = 3;
+    BattleShipGame gameA = 4;
+    BattleShipGame gameB = 5;
 
 }
 

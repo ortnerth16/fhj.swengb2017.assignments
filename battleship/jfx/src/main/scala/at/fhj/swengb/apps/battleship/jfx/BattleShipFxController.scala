@@ -21,6 +21,7 @@ class BattleShipFxController extends Initializable {
   @FXML private var battleGroundGridPane: GridPane = _
 
   var battleshipGame: BattleShipGame = _
+  var gameRound: GameRound = _
 
   /**
     * A text area box to place the history of the game
@@ -55,28 +56,28 @@ class BattleShipFxController extends Initializable {
     * - placing your ships at random on the battleground
     *
     */
-  def init(game: BattleShipGame): Unit = {
+  /*def init(game: BattleShipGame): Unit = {
     battleshipGame = game
     battleGroundGridPane.getChildren.clear()
     for (c <- game.getCells) {
       battleGroundGridPane.add(c, c.pos.x, c.pos.y)
     }
     game.getCells().foreach(c => c.init)
+  }*/
+  def init(game: GameRound): Unit = {
+    gameRound = game
+    battleGroundGridPane.getChildren.clear()
+    for (c <- game.gameA.getCells) {
+      battleGroundGridPane.add(c, c.pos.x, c.pos.y)
+    }
+    game.gameA.getCells().foreach(c => c.init)
   }
 
 
   private def initGame(): Unit = {
-    val game: BattleShipGame = createGame()
+    val game: GameRound = GameRound("PlayerA", "PlayerB",getCellWidth, getCellHeight, appendLog)
     init(game)
     appendLog("New game started.")
-  }
-
-  private def createGame(): BattleShipGame = {
-    val field = BattleField(10, 10, Fleet(FleetConfig.Standard))
-
-    val battleField: BattleField = BattleField.placeRandomly(field)
-    //player = scala.io.StdIn.readLine()
-    BattleShipGame(battleField, getCellWidth, getCellHeight, appendLog, "")
   }
 
 
@@ -90,7 +91,7 @@ class BattleShipFxController extends Initializable {
 
   }
 
-  def loadGameState(): Unit = {
+  /*def loadGameState(): Unit = {
 
     val reload = BattleShipProtobuf.Game.BattleShipGame.parseFrom(Files.newInputStream(Paths.get("battleship/"+filename+".bin")))
 
@@ -101,7 +102,8 @@ class BattleShipFxController extends Initializable {
     appendLog("Loaded the game")
 
 
-  }
+  }*/
+  def loadGameState(): Unit = ???
 }
 
 
