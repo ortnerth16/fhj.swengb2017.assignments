@@ -21,4 +21,10 @@
 | 2.5
 | Updated .proto file again, continued with implementing multiplayer functionality
 
+| malichri16
+| 16.01.2018
+| -
+| 2
+| initial version of NewGameController & EditModeController
+
 |===
