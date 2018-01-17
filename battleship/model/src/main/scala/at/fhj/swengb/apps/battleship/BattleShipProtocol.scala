@@ -9,9 +9,8 @@ object BattleShipProtocol {
   // Convert to BattleShipProtobuf
   def convert(g: GameRound): BattleShipProtobuf.Game = {
     BattleShipProtobuf.Game.newBuilder()
-      .setGameA(convert(g.gameA))
-      .setGameB(convert(g.gameB))
-      .setName(g.gameName).build()
+      .setGameA(convert(g.getGameA))
+      .setGameB(convert(g.getGameB)).build()
   }
 
   def convert(g: BattleShipGame): BattleShipProtobuf.Game.BattleShipGame = {

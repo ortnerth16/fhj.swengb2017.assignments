@@ -43,8 +43,6 @@ class BattleShipFxController extends Initializable {
 
   def appendLog(message: String): Unit = log.appendText(message + "\n")
 
-  private var player: String = _
-
   private var filename: String = _
 
   /**
@@ -64,18 +62,19 @@ class BattleShipFxController extends Initializable {
     }
     game.getCells().foreach(c => c.init)
   }*/
+
   def init(game: GameRound): Unit = {
     gameRound = game
     battleGroundGridPane.getChildren.clear()
-    for (c <- game.gameA.getCells) {
+    for (c <- game.getGameA.getCells) {
       battleGroundGridPane.add(c, c.pos.x, c.pos.y)
     }
-    game.gameA.getCells().foreach(c => c.init)
+    game.getGameA.getCells().foreach(c => c.init)
   }
 
 
   private def initGame(): Unit = {
-    val game: GameRound = GameRound("PlayerA", "PlayerB",getCellWidth, getCellHeight, appendLog)
+    val game: GameRound = new GameRound("PlayerA", "PlayerB", "Battle of Bearstards", appendLog, getCellWidth, getCellHeight)
     init(game)
     appendLog("New game started.")
   }
@@ -85,11 +84,12 @@ class BattleShipFxController extends Initializable {
     val datetime = Calendar.getInstance().getTime
     val test = datetime.toString.filterNot(x => x.isWhitespace ||  x.equals(':'))
     filename = test
-    convert(battleshipGame).writeTo(Files.newOutputStream(Paths.get("battleship/"+filename+".bin")))
+    convert(gameRound).writeTo(Files.newOutputStream(Paths.get("battleship/"+filename+".bin")))
 
     appendLog("Saved the game")
 
   }
+  // Gespeichert wird immer nur ein BattleShipGame - keine GameRound
 
   /*def loadGameState(): Unit = {
 
