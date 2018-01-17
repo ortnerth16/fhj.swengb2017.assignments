@@ -15,18 +15,16 @@ import at.fhj.swengb.apps.battleship.BattleShipProtocol._
 
 class BattleShipFxController extends Initializable {
 
-  @FXML private var welcomeGrid: GridPane = _
 
 
-  @FXML private var battleGroundGridPane: GridPane = _
+  @FXML
+  private var battleGroundGridPane: GridPane = _
 
   var battleshipGame: BattleShipGame = _
   var gameRound: GameRound = _
 
-  /**
-    * A text area box to place the history of the game
-    */
-  @FXML private var log: TextArea = _
+  @FXML
+  private var log: TextArea = _
 
   @FXML
   def newGame(): Unit = initGame()

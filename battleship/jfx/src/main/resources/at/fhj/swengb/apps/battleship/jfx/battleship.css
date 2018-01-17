@@ -6,17 +6,26 @@
 }
 
 .grid {
-    -fx-background-image: url("meer.jpg");
-    -fx-background-color: rgba(255,255,255,0.5);
-    -fx-opacity: 0.8
+
+    -fx-background-color: grey;
+    -fx-opacity: 0.5;
+
 }
 
 .grid_welcome {
     -fx-background-image: url("eisbär.jpg");
     -fx-background-color: rgba(255,255,255,0.5);
-    -fx-opacity: 0.8
+    -fx-opacity: 0.8;
+
     }
 
+.hbox {
+     -fx-padding: 10;
+ }
+
+
+
+}
 .button {
     -fx-background-color:
                 linear-gradient(#f2f2f2, #d6d6d6),
@@ -24,8 +33,33 @@
                 linear-gradient(#A9A9A9 0%, #C0C0C0 50%);
             -fx-background-insets: 0,1,1.5;
             -fx-text-fill: black;
-            -fx-font-size: 14px;
+            -fx-font-size: 25px;
+
 }
+
+.text {
+    -fx-background-color:
+                linear-gradient(#f2f2f2, #d6d6d6),
+                linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+                linear-gradient(#A9A9A9 0%, #C0C0C0 50%);
+            -fx-background-insets: 0,1,1.5;
+            -fx-text-fill: black;
+            -fx-font-size: 18px;
+
+}
+
+.button:hover{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* 4 8 4 8 */
+    -fx-text-fill: -fx-text-base-color;
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
+}
+
+
+
 
 .textfield {
     -fx-background-image: url("erde.jpg");

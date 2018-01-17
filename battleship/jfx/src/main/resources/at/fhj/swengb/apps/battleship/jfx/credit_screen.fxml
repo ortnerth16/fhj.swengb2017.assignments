@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane prefHeight="700.0" prefWidth="1000.0" styleClass="grid_welcome" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.fhj.swengb.apps.battleship.jfx.BattleShipFxCredits">
+<top>
+    <HBox alignment="CENTER" prefHeight="27.0" styleClass="hbox">
+        <Text fill="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Credits">
+            <font>
+                <Font name="Roboto Medium" size="56.0" />
+            </font>
+        </Text>
+    </HBox>
+</top>
+
+    <center>
+        <HBox prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+        <Text fill="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Game made by">
+            <font>
+                <Font name="Roboto Medium" size="40.0" />
+            </font>
+        </Text>
+
+    </center>
+    
+    <bottom>
+
+            <HBox prefHeight="27.0" prefWidth="250.0" styleClass="hbox" BorderPane.alignment="BOTTOM_LEFT">
+                <Button id="button" fx:id="nextScreen" onAction="#back" prefHeight="35.0" prefWidth="170.0" styleClass="button" text="back" />
+            </HBox>
+    </bottom>
+
+</BorderPane>
