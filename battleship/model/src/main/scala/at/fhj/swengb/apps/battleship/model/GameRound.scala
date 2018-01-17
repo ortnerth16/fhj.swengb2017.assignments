@@ -33,15 +33,15 @@ case class GameRound(gameA: BattleShipGame,
 
 }*/
 
-class GameRound(playerA: String,
-                playerB: String,
-                gameName: String,
-                log:String => Unit,
-                getCellWidth: Int => Double,
-                getCellHeight: Int => Double) {
+case class GameRound(playerA: String,
+                     playerB: String,
+                     gameName: String,
+                     log:String => Unit,
+                     battleShipGameA: BattleShipGame,
+                     battleShipGameB: BattleShipGame) {
 
-  private val battleShipGameA = createGame(playerA, getCellWidth, getCellHeight, log)
-  private val battleShipGameB = createGame(playerB, getCellWidth, getCellHeight, log)
+  /*private val = battleShipGameA = createGame(playerA, getCellWidth, getCellHeight, log)
+  private val = battleShipGameB = createGame(playerB, getCellWidth, getCellHeight, log)*/
 
   private def createGame(player: String,
                  getCellWidth: Int => Double,

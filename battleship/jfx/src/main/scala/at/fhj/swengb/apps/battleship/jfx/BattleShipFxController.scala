@@ -74,7 +74,13 @@ class BattleShipFxController extends Initializable {
 
 
   private def initGame(): Unit = {
-    val game: GameRound = new GameRound("PlayerA", "PlayerB", "Battle of Bearstards", appendLog, getCellWidth, getCellHeight)
+    val field = BattleField(10, 10, Fleet(FleetConfig.Standard))
+
+    val battlefield: BattleField = BattleField.placeRandomly(field)
+    val gameA = BattleShipGame(battlefield, getCellWidth, getCellHeight, appendLog, "PlayerA")
+    val gameB = BattleShipGame(battlefield, getCellWidth, getCellHeight, appendLog, "PlayerB")
+
+    val game: GameRound = GameRound("PlayerA", "PlayerB", "Battle of Bearstards", appendLog, gameA, gameB)
     init(game)
     appendLog("New game started.")
   }
@@ -103,7 +109,23 @@ class BattleShipFxController extends Initializable {
 
 
   }*/
-  def loadGameState(): Unit = ???
+  def loadGameState(): Unit = {
+    val reload = BattleShipProtobuf.Game.parseFrom(Files.newInputStream(Paths.get("battleship/"+filename+".bin")))
+
+    val gameWithOldValues = GameRound(gameRound.playerA,
+                                      gameRound.playerB,
+                                      gameRound.gameName,
+                                      appendLog,
+                                      convert(reload).battleShipGameA,
+                                      convert(reload).battleShipGameB)
+
+    gameWithOldValues.battleShipGameA.gameState = convert(reload).battleShipGameA.gameState
+    gameWithOldValues.battleShipGameB.gameState = convert(reload).battleShipGameB.gameState
+    init(gameWithOldValues)
+    gameWithOldValues.battleShipGameA.update(gameRound.battleShipGameA.gameState.length)
+    gameWithOldValues.battleShipGameB.update(gameRound.battleShipGameB.gameState.length)
+    appendLog("Loaded the game")
+  }
 }
 
 
