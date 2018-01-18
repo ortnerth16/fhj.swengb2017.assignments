@@ -21,10 +21,10 @@ class EditModeController extends Initializable {
   /**
     * A text area box to place the history of the game
     */
-  @FXML private var shipList = ListView
+  /*@FXML private var shipList = ListView
   //@FXML private var verticalORhorizontal = _
   @FXML private var startPosX = TextArea
-  @FXML private var startPosY = TextArea
+  @FXML private var startPosY = TextArea*/
 
 
   // needed for the size of the battlefield

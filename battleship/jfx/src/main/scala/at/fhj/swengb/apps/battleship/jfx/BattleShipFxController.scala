@@ -93,7 +93,6 @@ class BattleShipFxController extends Initializable {
     appendLog("Saved the game")
 
   }
-  // Gespeichert wird immer nur ein BattleShipGame - keine GameRound
 
   /*def loadGameState(): Unit = {
 
@@ -114,14 +113,14 @@ class BattleShipFxController extends Initializable {
                                       gameRound.playerB,
                                       gameRound.gameName,
                                       appendLog,
-                                      convert(reload).battleShipGameA,
-                                      convert(reload).battleShipGameB)
+                                      convert(reload).getGameA,
+                                      convert(reload).getGameA)
 
-    gameWithOldValues.battleShipGameA.gameState = convert(reload).battleShipGameA.gameState
-    gameWithOldValues.battleShipGameB.gameState = convert(reload).battleShipGameB.gameState
+    gameWithOldValues.getGameA.gameState = convert(reload).getGameA.gameState
+    //gameWithOldValues.battleShipGameB.gameState = convert(reload).battleShipGameB.gameState
     init(gameWithOldValues)
-    gameWithOldValues.battleShipGameA.update(gameRound.battleShipGameA.gameState.length)
-    gameWithOldValues.battleShipGameB.update(gameRound.battleShipGameB.gameState.length)
+    gameWithOldValues.getGameA.update(gameRound.getGameA.gameState.length)
+    //gameWithOldValues.battleShipGameB.update(gameRound.battleShipGameB.gameState.length)
     appendLog("Loaded the game")
   }
 }

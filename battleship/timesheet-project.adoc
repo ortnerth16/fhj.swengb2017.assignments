@@ -27,4 +27,10 @@
 | 2
 | initial version of NewGameController & EditModeController
 
+
+| krassers16
+| 17.01.2018
+| -
+| 2.5
+| Both battlefields are displayed in the game mode
 |===
