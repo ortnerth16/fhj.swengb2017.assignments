@@ -16,7 +16,7 @@
 
         <HBox alignment="CENTER" prefHeight="27.0" styleClass="hbox">
             <HBox prefHeight="27.0" prefWidth="1000.0" BorderPane.alignment="TOP_CENTER">
-                <TextField alignment="CENTER" prefHeight="45.0" prefWidth="300.0" styleClass="text" text="Game Name">
+                <TextField fx:id="gameName" alignment="CENTER" prefHeight="45.0" prefWidth="300.0" styleClass="text" text="GameName">
                <HBox.margin>
                   <Insets left="340.0" top="30.0" />
                </HBox.margin></TextField>
@@ -36,8 +36,8 @@
         <GridPane fx:id="welcomeGrid" alignment="CENTER" hgap="5.0" vgap="5.0" BorderPane.alignment="CENTER">
             <Label alignment="CENTER" prefHeight="45.0" prefWidth="250.0" styleClass="text" text="Player A:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label alignment="CENTER" prefHeight="45.0" prefWidth="250.0" styleClass="text" text="Player B:" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <TextField prefHeight="45.0" prefWidth="250.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <TextField prefHeight="45.0" prefWidth="250.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <TextField fx:id="playerA" prefHeight="45.0" prefWidth="250.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <TextField fx:id="playerB" prefHeight="45.0" prefWidth="250.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="3" />
          <columnConstraints>
             <ColumnConstraints />
             <ColumnConstraints />
