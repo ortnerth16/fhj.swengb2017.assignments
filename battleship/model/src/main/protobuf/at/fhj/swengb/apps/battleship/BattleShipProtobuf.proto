@@ -55,6 +55,8 @@ message Game {
     BattleShipGame gameB = 5;
     int32 numberCurrentPlayers = 6;
     string currentPlayer = 7;
+    string playerA = 8;
+    string playerB = 9;
 
 }
 

@@ -37,17 +37,17 @@ class BattleShipFxApp extends Application {
   //val css = "/at/fhj/swengb/apps/battleship/jfx/battleship.css"
 
   override def start(stage: Stage): Unit = {
-    * welcomeScreen match {
-    * case Success(root) =>
-    *stage.setScene(new Scene(root))
-    *stage.show()
-    *stage.getScene.getStylesheets.clear()
-    *stage.getScene.getStylesheets.add(css)
-    *stage.setTitle("BattleShip")
-    * case Failure(e) => e.printStackTrace()
-    * }
-    * }
-    * */
+  * welcomeScreen match {
+  * case Success(root) =>
+  *stage.setScene(new Scene(root))
+  *stage.show()
+  *stage.getScene.getStylesheets.clear()
+  *stage.getScene.getStylesheets.add(css)
+  *stage.setTitle("BattleShip")
+  * case Failure(e) => e.printStackTrace()
+  * }
+  * }
+  * */
 
 
 
@@ -121,8 +121,8 @@ object BattleShipFxApp {
 
 
   def display(scene: Scene, stage: Stage): Unit = {
-      stage.setScene(scene)
-      stage.show()
+    stage.setScene(scene)
+    stage.show()
   }
 
   def setGameRound(game: GameRound): Unit = {
@@ -154,7 +154,6 @@ object BattleShipFxApp {
     val datetime = Calendar.getInstance().getTime
     val test = datetime.toString.filterNot(x => x.isWhitespace ||  x.equals(':'))
     filename = fname
-    convert(gameRound).writeTo(Files.newOutputStream(Paths.get("battleship/"+filename+".bin")))
   }
 
   def loadGameState(fname: String): GameRound = {
@@ -176,22 +175,22 @@ object BattleShipFxApp {
   }
 
 
-class BattleShipFxApp extends Application {
+  class BattleShipFxApp extends Application {
 
 
-  override def init(): Unit = {
-    BattleShipFxApp.loadFxml()
+    override def init(): Unit = {
+      BattleShipFxApp.loadFxml()
+    }
+
+
+    override def start(stage: Stage): Unit = {
+      stage.setTitle("Battleship")
+      stage.setResizable(false)
+      BattleShipFxApp.main = stage
+      BattleShipFxApp.display(BattleShipFxApp.loadWelcome,stage)
+    }
+
+
   }
-
-
-  override def start(stage: Stage): Unit = {
-    stage.setTitle("Battleship")
-    stage.setResizable(false)
-    BattleShipFxApp.main = stage
-    BattleShipFxApp.display(BattleShipFxApp.loadWelcome,stage)
-  }
-
-
-}
 
 }
