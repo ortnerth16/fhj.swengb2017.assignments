@@ -11,6 +11,7 @@ import javafx.scene.control.ProgressBar
 import javafx.scene.image.ImageView
 import javafx.scene.layout.{BorderPane, Pane}
 
+import at.fhj.swengb.apps.battleship.model.GameRound
 import com.sun.javafx.application.LauncherImpl
 
 
@@ -58,6 +59,9 @@ object BattleShipFxApp {
     Application.launch(classOf[BattleShipFxApp], args: _*)
 
   }
+
+  var filename: String = _
+  var gameRound: GameRound = _
 
   private var main: Stage = _
   private var splash: Scene = _
@@ -119,6 +123,30 @@ object BattleShipFxApp {
       stage.show()
   }
 
+  def setGameRound(game: GameRound): Unit = {
+    this.gameRound = game
+  }
+
+  def setFilename(fname: String): Unit = {
+    this.filename = fname
+  }
+
+  /**
+    *
+    * @return the gameRound which is needed
+    */
+  def getGameRound(): GameRound = {
+    return gameRound
+  }
+
+  /**
+    *
+    * @return
+    */
+  def getFilename(): String = {
+    return filename
+
+  }
 
 
 
