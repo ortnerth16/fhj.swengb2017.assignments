@@ -2,35 +2,26 @@ package at.fhj.swengb.apps.battleship.jfx
 
 import javafx.scene.control.TextArea
 import java.net.URL
-import java.nio.file.{Files, Paths}
 import java.util.{Calendar, ResourceBundle}
 import javafx.fxml.{FXML, Initializable}
-import javafx.scene.Scene
 import javafx.scene.layout.GridPane
 import javafx.scene.text.Text
 
-import at.fhj.swengb.apps.battleship.BattleShipProtobuf
-import at.fhj.swengb.apps.battleship.BattleShipProtocol.convert
 import at.fhj.swengb.apps.battleship.model._
 
 
 class BattleShipFxGame extends Initializable {
 
 
- @FXML
- private var ownGridPane: GridPane = _
+ @FXML private var ownGridPane: GridPane = _
 
- @FXML
- private var enemyGridPane: GridPane = _
+ @FXML private var enemyGridPane: GridPane = _
 
- @FXML
- private var log: TextArea = _
+ @FXML private var log: TextArea = _
 
- @FXML
- private var headline: Text = _
+ @FXML private var headline: Text = _
 
- @FXML
- private var playerTurn: Text = _
+ @FXML private var playerTurn: Text = _
 
  @FXML
  def giveUp(): Unit = {
@@ -51,9 +42,7 @@ class BattleShipFxGame extends Initializable {
 
  def appendLog(message: String): Unit = log.appendText(message + "\n")
 
- private var gameRound: GameRound = _
- private var filename: String = _
-
+ private var gameRound: GameRound = BattleShipFxApp.getGameRound()
 
  def save(): Unit = saveGameState()
 
@@ -74,22 +63,23 @@ class BattleShipFxGame extends Initializable {
   setLabels()
 
   ownGridPane.getChildren.clear()
-  for (c <- game.getGameA.getCells) {
+  for (c <- game.battleShipGameA.getCells) {
    ownGridPane.add(c, c.pos.x, c.pos.y)
   }
-  game.getGameA.getCells().foreach(c => c.init)
+  game.battleShipGameB.getCells().foreach(c => c.init)
 
   enemyGridPane.getChildren.clear()
-  for (c <- game.getGameB.getCells) {
+  for (c <- game.battleShipGameA.getCells) {
    enemyGridPane.add(c, c.pos.x, c.pos.y)
   }
-  game.getGameB.getCells().foreach(c => c.init)
+  game.battleShipGameB.getCells().foreach(c => c.init)
  }
 
 
  private def initGame(): Unit = {
-  val playerA = "PolarBear Miriam"
-  val playerB = "PolarBear Thomas"
+  val playerA = BattleShipFxApp.getGameRound.playerA
+  val playerB = BattleShipFxApp.getGameRound.playerB
+   val gameName = BattleShipFxApp.getGameRound.gameName
 
   val field = BattleField(10, 10, Fleet(FleetConfig.Standard))
 
@@ -97,7 +87,7 @@ class BattleShipFxGame extends Initializable {
   val gameA = BattleShipGame(battlefield, getCellWidth, getCellHeight, appendLog, playerA)
   val gameB = BattleShipGame(battlefield, getCellWidth, getCellHeight, appendLog, playerB)
 
-  val game: GameRound = GameRound(playerA, playerB, "Battle of Bearstards", appendLog,gameA, gameB, 2, playerA)
+  val game: GameRound = GameRound(playerA, playerB, gameName, appendLog,gameA, gameB, playerA)
   init(game)
   appendLog("New game started.")
  }
@@ -111,7 +101,7 @@ class BattleShipFxGame extends Initializable {
    playerTurn.setText(gameRound.playerB ++ "'" ++ " " ++ "turn")
  }
 
- def saveGameState(): Unit = {
+ /*def saveGameState(): Unit = {
   val datetime = Calendar.getInstance().getTime
   val test = datetime.toString.filterNot(x => x.isWhitespace ||  x.equals(':'))
   filename = "battleship"
@@ -122,23 +112,37 @@ class BattleShipFxGame extends Initializable {
  }
 
  def loadGameState(): Unit = {
-  val reload = BattleShipProtobuf.Game.parseFrom(Files.newInputStream(Paths.get("battleship/"+filename+".bin")))
+  val reload = BattleShipProtobuf.Game.parseFrom(Files.newInputStream(Paths.get("battleship/battleship.bin")))
 
-  val gameWithOldValues = GameRound(gameRound.playerA,
-   gameRound.playerB,
-   gameRound.gameName,
-   appendLog,
-   convert(reload).getGameA,
-   convert(reload).getGameA,
-   2,
-   gameRound.currentPlayer)
+  val gameWithOldValues = GameRound(convert(reload).playerA,
+    convert(reload).playerB,
+    convert(reload).gameName,
+    appendLog,
+    convert(reload).getGameA,
+    convert(reload).getGameA,
+    convert(reload).numberCurrentPlayers,
+    convert(reload).currentPlayer)
 
   gameWithOldValues.getGameA.gameState = convert(reload).getGameA.gameState
-  //gameWithOldValues.battleShipGameB.gameState = convert(reload).battleShipGameB.gameState
+  gameWithOldValues.battleShipGameB.gameState = convert(reload).battleShipGameB.gameState
   init(gameWithOldValues)
   gameWithOldValues.getGameA.update(gameRound.getGameA.gameState.length)
-  //gameWithOldValues.battleShipGameB.update(gameRound.battleShipGameB.gameState.length)
+  gameWithOldValues.battleShipGameB.update(gameRound.battleShipGameB.gameState.length)
   appendLog("Loaded the game")
+ }*/
+
+ def saveGameState(): Unit = {
+   BattleShipFxApp.loadGameState()
+   appendLog("Saved the game")
+
  }
 
+  def loadGameState(): Unit = {
+    val gameWithOldValues = BattleShipFxApp.loadGameState()
+
+    init(gameWithOldValues)
+    gameWithOldValues.battleShipGameA.update(gameRound.battleShipGameA.gameState.length)
+    gameWithOldValues.battleShipGameB.update(gameRound.battleShipGameB.gameState.length)
+    appendLog("Loaded the game")
+  }
 }

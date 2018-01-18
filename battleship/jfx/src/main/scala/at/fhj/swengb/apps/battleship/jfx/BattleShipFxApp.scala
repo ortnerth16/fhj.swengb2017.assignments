@@ -7,10 +7,14 @@ import javafx.stage.Stage
 
 import scala.util.{Failure, Success, Try}
 import java.io.IOException
+import java.nio.file.{Files, Paths}
+import java.util.Calendar
 import javafx.scene.control.ProgressBar
 import javafx.scene.image.ImageView
 import javafx.scene.layout.{BorderPane, Pane}
 
+import at.fhj.swengb.apps.battleship.BattleShipProtobuf
+import at.fhj.swengb.apps.battleship.BattleShipProtocol.convert
 import at.fhj.swengb.apps.battleship.model.GameRound
 import com.sun.javafx.application.LauncherImpl
 
@@ -148,6 +152,31 @@ object BattleShipFxApp {
 
   }
 
+  def saveGameState(): Unit = {
+    val datetime = Calendar.getInstance().getTime
+    val test = datetime.toString.filterNot(x => x.isWhitespace ||  x.equals(':'))
+    filename = "battleship"
+    convert(gameRound).writeTo(Files.newOutputStream(Paths.get("battleship/"+filename+".bin")))
+
+
+  }
+
+  def loadGameState(): GameRound = {
+    val reload = BattleShipProtobuf.Game.parseFrom(Files.newInputStream(Paths.get("battleship/battleship.bin")))
+
+    val gameWithOldValues = GameRound(convert(reload).playerA,
+      convert(reload).playerB,
+      convert(reload).gameName,
+      x=>(),
+      convert(reload).battleShipGameA,
+      convert(reload).battleShipGameB,
+      convert(reload).currentPlayer)
+
+    gameWithOldValues.battleShipGameA.gameState = convert(reload).battleShipGameA.gameState
+    gameWithOldValues.battleShipGameB.gameState = convert(reload).battleShipGameB.gameState
+
+    gameWithOldValues
+  }
 
 
 class BattleShipFxApp extends Application {

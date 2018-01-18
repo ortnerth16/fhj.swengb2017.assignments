@@ -39,9 +39,9 @@ case class GameRound(playerA: String,
                      log:String => Unit,
                      battleShipGameA: BattleShipGame,
                      battleShipGameB: BattleShipGame,
-                     numberCurrentPlayers: Int,
                      currentPlayer: String) {
 
+  private var numberCurrentPlayers: Int = _
   /*private val = battleShipGameA = createGame(playerA, getCellWidth, getCellHeight, log)
   private val = battleShipGameB = createGame(playerB, getCellWidth, getCellHeight, log)*/
 
@@ -57,9 +57,8 @@ case class GameRound(playerA: String,
     BattleShipGame(battlefield, getCellWidth, getCellHeight, log, player)
   }
 
-  def getGameA: BattleShipGame = battleShipGameA
+  def setNumberCurrentPlayers(number: Int) = this.numberCurrentPlayers = number
 
-  def getGameB: BattleShipGame = battleShipGameB
-
+  def getNumberCurrentPlayers(): Int = numberCurrentPlayers
 
 }
