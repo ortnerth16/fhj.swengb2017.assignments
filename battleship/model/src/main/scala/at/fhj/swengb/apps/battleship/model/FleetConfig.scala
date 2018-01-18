@@ -17,7 +17,7 @@ object FleetConfig {
 
   val TwoShips: FleetConfig = FleetConfig(Map(classOf[BattleShip] -> 2))
 
-
+  val EmptyFleet: FleetConfig = FleetConfig(Map(classOf[BattleShip] -> 0))
 }
 
 /**
