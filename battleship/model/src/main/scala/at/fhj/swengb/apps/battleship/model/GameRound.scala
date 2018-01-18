@@ -38,7 +38,9 @@ case class GameRound(playerA: String,
                      gameName: String,
                      log:String => Unit,
                      battleShipGameA: BattleShipGame,
-                     battleShipGameB: BattleShipGame) {
+                     battleShipGameB: BattleShipGame,
+                     numberCurrentPlayers: Int,
+                     currentPlayer: String) {
 
   /*private val = battleShipGameA = createGame(playerA, getCellWidth, getCellHeight, log)
   private val = battleShipGameB = createGame(playerB, getCellWidth, getCellHeight, log)*/
@@ -56,6 +58,7 @@ case class GameRound(playerA: String,
   }
 
   def getGameA: BattleShipGame = battleShipGameA
+
   def getGameB: BattleShipGame = battleShipGameB
 
 

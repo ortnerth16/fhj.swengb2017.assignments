@@ -1,4 +1,4 @@
-package at.fhj.swengb.apps.battleship.jfx
+/*package at.fhj.swengb.apps.battleship.jfx
 
 import java.net.URL
 import java.util.{Calendar, ResourceBundle}
@@ -78,7 +78,7 @@ class BattleShipFxController extends Initializable {
     val gameA = BattleShipGame(battlefield, getCellWidth, getCellHeight, appendLog, "PlayerA")
     val gameB = BattleShipGame(battlefield, getCellWidth, getCellHeight, appendLog, "PlayerB")
 
-    val game: GameRound = GameRound("PlayerA", "PlayerB", "Battle of Bearstards", appendLog, gameA, gameB)
+    val game: GameRound = GameRound("PlayerA", "PlayerB", "Battle of Bearstards", appendLog, gameA, gameB, )
     init(game)
     appendLog("New game started.")
   }
@@ -123,7 +123,7 @@ class BattleShipFxController extends Initializable {
     //gameWithOldValues.battleShipGameB.update(gameRound.battleShipGameB.gameState.length)
     appendLog("Loaded the game")
   }
-}
+}*/
 
 
 

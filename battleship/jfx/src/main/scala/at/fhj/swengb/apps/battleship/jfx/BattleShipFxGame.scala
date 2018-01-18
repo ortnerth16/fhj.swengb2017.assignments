@@ -2,11 +2,15 @@ package at.fhj.swengb.apps.battleship.jfx
 
 import javafx.scene.control.TextArea
 import java.net.URL
-import java.util.ResourceBundle
+import java.nio.file.{Files, Paths}
+import java.util.{Calendar, ResourceBundle}
 import javafx.fxml.{FXML, Initializable}
 import javafx.scene.Scene
 import javafx.scene.layout.GridPane
+import javafx.scene.text.Text
 
+import at.fhj.swengb.apps.battleship.BattleShipProtobuf
+import at.fhj.swengb.apps.battleship.BattleShipProtocol.convert
 import at.fhj.swengb.apps.battleship.model._
 
 
@@ -21,6 +25,12 @@ class BattleShipFxGame extends Initializable {
 
  @FXML
  private var log: TextArea = _
+
+ @FXML
+ private var headline: Text = _
+
+ @FXML
+ private var playerTurn: Text = _
 
  @FXML
  def giveUp(): Unit = {
@@ -45,7 +55,9 @@ class BattleShipFxGame extends Initializable {
  private var filename: String = _
 
 
- //TODO Playernames, Battlename
+ def save(): Unit = saveGameState()
+
+ def load(): Unit = loadGameState()
 
  /**
    * Create a new game.
@@ -56,17 +68,11 @@ class BattleShipFxGame extends Initializable {
    * - placing your ships at random on the battleground
    *
    */
- /*def init(game: BattleShipGame): Unit = {
-   battleshipGame = game
-   battleGroundGridPane.getChildren.clear()
-   for (c <- game.getCells) {
-     battleGroundGridPane.add(c, c.pos.x, c.pos.y)
-   }
-   game.getCells().foreach(c => c.init)
- }*/
 
  def init(game: GameRound): Unit = {
   gameRound = game
+  setLabels()
+
   ownGridPane.getChildren.clear()
   for (c <- game.getGameA.getCells) {
    ownGridPane.add(c, c.pos.x, c.pos.y)
@@ -82,19 +88,57 @@ class BattleShipFxGame extends Initializable {
 
 
  private def initGame(): Unit = {
+  val playerA = "PolarBear Miriam"
+  val playerB = "PolarBear Thomas"
+
   val field = BattleField(10, 10, Fleet(FleetConfig.Standard))
 
   val battlefield: BattleField = BattleField.placeRandomly(field)
-  val gameA = BattleShipGame(battlefield, getCellWidth, getCellHeight, appendLog, "PlayerA")
-  val gameB = BattleShipGame(battlefield, getCellWidth, getCellHeight, appendLog, "PlayerB")
+  val gameA = BattleShipGame(battlefield, getCellWidth, getCellHeight, appendLog, playerA)
+  val gameB = BattleShipGame(battlefield, getCellWidth, getCellHeight, appendLog, playerB)
 
-  val game: GameRound = GameRound("PlayerA", "PlayerB", "Battle of Bearstards", appendLog,gameA, gameB)
+  val game: GameRound = GameRound(playerA, playerB, "Battle of Bearstards", appendLog,gameA, gameB, 2, playerA)
   init(game)
   appendLog("New game started.")
  }
 
+ def setLabels(): Unit = {
+  headline.setText(gameRound.playerA ++ " " ++ "@" ++ gameRound.gameName ++ " " ++ gameRound.playerB)
 
+  if(gameRound.playerB.takeRight(1) != "s")
+   playerTurn.setText(gameRound.playerA ++ "'" ++ "s" ++ " " ++ "turn")
+  else
+   playerTurn.setText(gameRound.playerB ++ "'" ++ " " ++ "turn")
+ }
 
+ def saveGameState(): Unit = {
+  val datetime = Calendar.getInstance().getTime
+  val test = datetime.toString.filterNot(x => x.isWhitespace ||  x.equals(':'))
+  filename = "battleship"
+  convert(gameRound).writeTo(Files.newOutputStream(Paths.get("battleship/"+filename+".bin")))
 
+  appendLog("Saved the game")
+
+ }
+
+ def loadGameState(): Unit = {
+  val reload = BattleShipProtobuf.Game.parseFrom(Files.newInputStream(Paths.get("battleship/"+filename+".bin")))
+
+  val gameWithOldValues = GameRound(gameRound.playerA,
+   gameRound.playerB,
+   gameRound.gameName,
+   appendLog,
+   convert(reload).getGameA,
+   convert(reload).getGameA,
+   2,
+   gameRound.currentPlayer)
+
+  gameWithOldValues.getGameA.gameState = convert(reload).getGameA.gameState
+  //gameWithOldValues.battleShipGameB.gameState = convert(reload).battleShipGameB.gameState
+  init(gameWithOldValues)
+  gameWithOldValues.getGameA.update(gameRound.getGameA.gameState.length)
+  //gameWithOldValues.battleShipGameB.update(gameRound.battleShipGameB.gameState.length)
+  appendLog("Loaded the game")
+ }
 
 }
