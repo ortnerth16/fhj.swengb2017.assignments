@@ -75,7 +75,7 @@ class BattleShipFxNewGame extends Initializable {
    val gameA = BattleShipGame(battlefield, (x: Int) => x.toDouble, (x: Int) => x.toDouble, x => (), player1)
    val gameB = BattleShipGame(battlefield, (x: Int) => x.toDouble, (x: Int) => x.toDouble, x => (), player2)
 
-    game = GameRound(player1, player2, name, x => (), gameA, gameB)
+    game = GameRound(player1, player2, name, x => (), gameA, gameB, 2, player1)
    saveGameState()
    BattleShipFxApp.display(BattleShipFxApp.loadEditGame,BattleShipFxApp.loadMain)
   }

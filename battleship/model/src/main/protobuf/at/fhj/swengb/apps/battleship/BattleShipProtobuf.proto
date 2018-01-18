@@ -48,11 +48,13 @@ message Game {
         string player = 5;
     }
 
-    string name = 1;
+    string gameName = 1;
     string date = 2;
     string winner = 3;
     BattleShipGame gameA = 4;
     BattleShipGame gameB = 5;
+    int32 numberCurrentPlayers = 6;
+    string currentPlayer = 7;
 
 }
 

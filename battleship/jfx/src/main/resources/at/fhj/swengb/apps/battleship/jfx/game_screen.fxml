@@ -2,7 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -13,16 +13,15 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<?import javafx.scene.control.TextArea?>
 <BorderPane prefHeight="700.0" prefWidth="1000.0" styleClass="grid_welcome" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="at.fhj.swengb.apps.battleship.jfx.BattleShipFxGame">
 <top>
     <HBox prefHeight="50.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
 
 
-        <Text fill="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Player A @Battlename vs Player B" textAlignment="CENTER">
+        <Text fx:id="headline" fill="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
 
             <font>
-                <Font name="Roboto Medium" size="40.0" />
+                <Font name="Roboto Medium" size="35.0" />
             </font>
             <HBox.margin>
                 <Insets left="100.0" top="20.0" />
@@ -37,10 +36,10 @@
 
             <HBox prefHeight="50.0" prefWidth="400.0" BorderPane.alignment="CENTER">
 
-                <Text fill="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn Player A" textAlignment="CENTER">
+                <Text fx:id="playerTurn" fill="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER">
 
                     <font>
-                        <Font name="Roboto Medium" size="40.0" />
+                        <Font name="Roboto Medium" size="35.0" />
                     </font>
                     <HBox.margin>
                         <Insets left="30.0" top="20.0" />
@@ -73,7 +72,7 @@
                 <TextField prefHeight="170.0" prefWidth="120.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="2" />
 
             <VBox.margin>
-               <Insets left="30.0"  />
+               <Insets left="30.0" />
             </VBox.margin>
         </VBox>
 
@@ -94,10 +93,10 @@
 
 
             <VBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-                <TextArea fx:id="log" prefHeight="170.0" prefWidth="120.0" editable="false" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                <TextArea fx:id="log" editable="false" prefHeight="170.0" prefWidth="120.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
 
                 <VBox.margin>
-                    <Insets left="30.0"  />
+                    <Insets left="30.0" />
                 </VBox.margin>
             </VBox>
         </VBox>
@@ -176,7 +175,7 @@
 
             <HBox prefHeight="300.0" prefWidth="550.0" BorderPane.alignment="BOTTOM_RIGHT">
 
-                <GridPane fx:id="ownGridPane" alignment="CENTER" hgap="5" vgap="5"   styleClass="grid" gridLinesVisible="true">
+                <GridPane fx:id="ownGridPane" alignment="CENTER" gridLinesVisible="true" styleClass="grid">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -218,7 +217,9 @@
     <bottom>
         <HBox prefHeight="27.0" prefWidth="752.0" styleClass="hbox">
             <HBox prefHeight="27.0" prefWidth="752.0" BorderPane.alignment="BOTTOM_LEFT">
-                <Button id="button" fx:id="nextScreen" onAction="#giveUp" prefHeight="35.0" prefWidth="170.0" styleClass="button" text="give up" />
+                <Button fx:id="nextScreen" onAction="#giveUp" prefHeight="35.0" prefWidth="170.0" styleClass="button" text="Give up" />
+                <Button fx:id="save" onAction="#save" prefHeight="35.0" prefWidth="170.0" styleClass="button" text="Save" />
+                <Button fx:id="load" onAction="#load" prefHeight="35.0" prefWidth="170.0" styleClass="button" text="Load" />
             </HBox>
 
         </HBox>
