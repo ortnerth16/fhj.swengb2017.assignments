@@ -101,8 +101,6 @@ object BattleShipFxApp {
     credits = load("/at/fhj/swengb/apps/battleship/jfx/credit_screen.fxml")
     join = load("/at/fhj/swengb/apps/battleship/jfx/join_screen.fxml")
     game = load("/at/fhj/swengb/apps/battleship/jfx/game_screen.fxml")
-
-
   }
 
 
@@ -152,17 +150,16 @@ object BattleShipFxApp {
 
   }
 
-  def saveGameState(): Unit = {
+  def saveGameState(fname: String): Unit = {
     val datetime = Calendar.getInstance().getTime
     val test = datetime.toString.filterNot(x => x.isWhitespace ||  x.equals(':'))
-    filename = "battleship"
+    filename = fname
     convert(gameRound).writeTo(Files.newOutputStream(Paths.get("battleship/"+filename+".bin")))
-
-
   }
 
-  def loadGameState(): GameRound = {
-    val reload = BattleShipProtobuf.Game.parseFrom(Files.newInputStream(Paths.get("battleship/battleship.bin")))
+  def loadGameState(fname: String): GameRound = {
+    filename = fname
+    val reload = BattleShipProtobuf.Game.parseFrom(Files.newInputStream(Paths.get("battleship/"+filename+".bin")))
 
     val gameWithOldValues = GameRound(convert(reload).playerA,
       convert(reload).playerB,
