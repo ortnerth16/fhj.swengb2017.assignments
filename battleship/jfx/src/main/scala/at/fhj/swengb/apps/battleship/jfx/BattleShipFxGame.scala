@@ -66,7 +66,9 @@ class BattleShipFxGame extends Initializable {
     */
 
   // TODO Change between players
-  // TODO TimeSheet nachholen
+  // TODO Hide enemy battlefield
+  // TODO Implement GameState
+  // TODO Display battlefields in correct place (different game instances)
 
   def init(game: GameRound): Unit = {
 
