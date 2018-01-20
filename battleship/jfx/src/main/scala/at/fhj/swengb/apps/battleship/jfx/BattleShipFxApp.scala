@@ -101,13 +101,14 @@ object BattleShipFxApp {
     highscore = load("/at/fhj/swengb/apps/battleship/jfx/highscore_screen.fxml")
     credits = load("/at/fhj/swengb/apps/battleship/jfx/credit_screen.fxml")
     join = load("/at/fhj/swengb/apps/battleship/jfx/join_screen.fxml")
-    game = load("/at/fhj/swengb/apps/battleship/jfx/game_screen.fxml")
   }
 
   def loadFxmlEditMode(): Unit = {
     editGame = load("/at/fhj/swengb/apps/battleship/jfx/edit_screen.fxml")
   }
-
+  def loadFxmlGameMode(): Unit = {
+    game = load("/at/fhj/swengb/apps/battleship/jfx/game_screen.fxml")
+  }
 
   private def load(file: String): Scene = {
     val triedRoot = Try(FXMLLoader.load[Parent](getClass.getResource(file)))
