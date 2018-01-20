@@ -9,11 +9,30 @@
 | Actual Hours
 | Description
 
+
+| grainerm15
+| 12.01.15
+| 2
+| 3
+| tried to find out how to change scenes and connect with controller; implemented welcomescreen
+
+| grainerm15
+| 13.01.15
+| 3
+| 3
+| implemented functionality for different scenes/stage; worked on GUI
+
 | krassers16
 | 15.01.2018
 | 2
 | 2
 | Updated .proto file, updated filename for protobuf files, started to implement some multiplayer functinality
+
+| grainerm15
+| 15.01.15
+| 2
+| 3
+| worked on GUI, implemented new screens
 
 | krassers16
 | 16.01.2018
