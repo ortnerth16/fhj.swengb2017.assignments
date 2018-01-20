@@ -46,11 +46,11 @@ case class BattleShipGame(battleField: BattleField,
       cells(pos.x*battleField.width + pos.y).getOnMouseClicked().handle(null)
     })
   }
-
   def clickedCells(pos: BattlePos): Unit = {
     if(!gameState.contains(pos))
       gameState = gameState :+ pos
   }
+
 
   def updateGameState(vessel: Vessel, pos: BattlePos): Unit = {
     log("Vessel " + vessel.name.value + " was hit at position " + pos)

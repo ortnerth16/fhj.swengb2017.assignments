@@ -12,7 +12,7 @@ object BattleShipProtocol {
       .setGameA(convert(g.battleShipGameA))
       .setGameB(convert(g.battleShipGameB))
       .setGameName(g.gameName)
-      .setCurrentPlayer(g.currentPlayer)
+      .setCurrentPlayer(g.getCurrentPlayer())
       .setNumberCurrentPlayers(g.getNumberCurrentPlayers())
       .setPlayerA(g.playerA)
       .setPlayerB(g.playerB).build()
@@ -57,7 +57,7 @@ object BattleShipProtocol {
   def convert(g: BattlePos): BattleShipProtobuf.Game.BattlePos = BattleShipProtobuf.Game.BattlePos.newBuilder().setX(g.x).setY(g.y).build()
 
   // Convert back
-  def convert(g: BattleShipProtobuf.Game) : GameRound = GameRound(g.getPlayerA, g.getPlayerB, g.getGameName, x=>(), convert(g.getGameA), convert(g.getGameB), g.getCurrentPlayer)
+  def convert(g: BattleShipProtobuf.Game) : GameRound = GameRound(g.getPlayerA, g.getPlayerB, g.getGameName, x=>(), convert(g.getGameA), convert(g.getGameB))
 
   def convert(g: BattleShipProtobuf.Game.Vessel): Vessel = {
     val direction = {

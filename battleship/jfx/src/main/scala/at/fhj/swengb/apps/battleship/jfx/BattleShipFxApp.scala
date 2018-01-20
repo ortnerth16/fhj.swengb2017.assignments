@@ -166,15 +166,14 @@ object BattleShipFxApp {
 
   def loadGameState(fname: String): GameRound = {
     filename = fname
-    val reload = BattleShipProtobuf.Game.parseFrom(Files.newInputStream(Paths.get("battleship/"+filename+".bin")))
+    val reload = BattleShipProtobuf.Game.parseFrom(Files.newInputStream(Paths.get(filename)))
 
     val gameWithOldValues = GameRound(convert(reload).playerA,
       convert(reload).playerB,
       convert(reload).gameName,
       x=>(),
       convert(reload).battleShipGameA,
-      convert(reload).battleShipGameB,
-      convert(reload).currentPlayer)
+      convert(reload).battleShipGameB)
 
     gameWithOldValues.battleShipGameA.gameState = convert(reload).battleShipGameA.gameState
     gameWithOldValues.battleShipGameB.gameState = convert(reload).battleShipGameB.gameState
