@@ -45,7 +45,7 @@ class BattleShipFxGame extends Initializable {
 
   def appendLog(message: String): Unit = log.appendText(message + "\n")
 
-  private var gameRound: GameRound = BattleShipFxApp.getGameRound()
+  private var gameRound: GameRound = _
   private var fileName: String = BattleShipFxApp.getFilename()
 
   def save(): Unit = saveGameState()
@@ -68,7 +68,7 @@ class BattleShipFxGame extends Initializable {
   // TODO TimeSheet nachholen
 
   def init(game: GameRound): Unit = {
-    gameRound = game
+
     setLabels()
 
     ownGridPane.getChildren.clear()
@@ -82,27 +82,23 @@ class BattleShipFxGame extends Initializable {
       enemyGridPane.add(c, c.pos.x, c.pos.y)
     }
     game.battleShipGameB.getCells().foreach(c => c.init)
+
   }
 
 
   private def initGame(): Unit = {
-    /*val playerA = BattleShipFxApp.getGameRound.playerA
-    val playerB = BattleShipFxApp.getGameRound.playerB
-    val gameName = BattleShipFxApp.getGameRound.gameName*/
+    if(BattleShipFxApp.getGameRound() != null) {
 
-    val playerA = "lsfdhd"
+      gameRound = BattleShipFxApp.getGameRound()
+
+      /*val playerA = "lsfdhd"
     val playerB = "ydlfjds"
-    val gameName = "jfdlöh"
+    val gameName = "jfdlöh"*/
 
-    val field = BattleField(10, 10, Fleet(FleetConfig.Standard))
 
-    val battlefield: BattleField = BattleField.placeRandomly(field)
-    val gameA = BattleShipGame(battlefield, getCellWidth, getCellHeight, appendLog, playerA)
-    val gameB = BattleShipGame(battlefield, getCellWidth, getCellHeight, appendLog, playerB)
-
-    val game: GameRound = GameRound(playerA, playerB, gameName, appendLog,gameA, gameB, playerA)
-    init(game)
-    appendLog("New game started.")
+      init(gameRound)
+      appendLog("New game started.")
+    }
   }
 
   def setLabels(): Unit = {
