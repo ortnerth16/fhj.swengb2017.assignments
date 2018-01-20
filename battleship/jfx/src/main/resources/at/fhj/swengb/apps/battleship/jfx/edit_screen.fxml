@@ -55,28 +55,28 @@
                 <children>
                     <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 1">
                        <toggleGroup>
-                          <ToggleGroup fx:id="bla" />
+                          <ToggleGroup fx:id="ships" />
                        </toggleGroup>
                   <padding>
                      <Insets bottom="5.0" />
                   </padding></RadioButton>
-                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 2" toggleGroup="$bla">
+                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 2" toggleGroup="ships">
                   <padding>
                      <Insets bottom="5.0" />
                   </padding></RadioButton>
-                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 3" toggleGroup="$bla">
+                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 3" toggleGroup="ships">
                   <padding>
                      <Insets bottom="5.0" />
                   </padding></RadioButton>
-                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 4" toggleGroup="$bla">
+                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 4" toggleGroup="ships">
                   <padding>
                      <Insets bottom="5.0" />
                   </padding></RadioButton>
-                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 5" toggleGroup="$bla">
+                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 5" toggleGroup="ships">
                   <padding>
                      <Insets bottom="5.0" />
                   </padding></RadioButton>
-                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 6" toggleGroup="$bla">
+                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 6" toggleGroup="ships">
                   <padding>
                      <Insets bottom="5.0" />
                   </padding></RadioButton>
@@ -122,23 +122,23 @@
 
             </HBox>
             <HBox prefHeight="50.0" prefWidth="400.0" BorderPane.alignment="CENTER">
-                <TextField prefHeight="35.0" prefWidth="65.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                <TextField fx:id="startPosX" prefHeight="35.0" prefWidth="65.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="2">
                <HBox.margin>
                   <Insets left="70.0" />
                </HBox.margin></TextField>
-                <TextField prefHeight="35.0" prefWidth="65.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                <TextField fx:id="startPosY" prefHeight="35.0" prefWidth="65.0" text="" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <HBox.margin>
                   <Insets left="140.0" />
                </HBox.margin></TextField>
             </HBox>
 
             <HBox prefHeight="50.0" prefWidth="400.0" BorderPane.alignment="CENTER">
-                <Button id="button" fx:id="button2" prefHeight="45.0" prefWidth="250.0" styleClass="button" text="delete Ship">
+                <Button id="button" fx:id="button2" onAction="#deleteShip" prefHeight="45.0" prefWidth="250.0" styleClass="button" text="delete Ship">
                     <HBox.margin>
                         <Insets left="10" top="30" />
                     </HBox.margin></Button>
 
-                <Button id="button" fx:id="button22" prefHeight="45.0" prefWidth="250.0" styleClass="button" text="place Ship">
+                <Button id="button" fx:id="button22" onAction="#placeShip" prefHeight="45.0" prefWidth="250.0" styleClass="button" text="place Ship">
                     <HBox.margin>
                         <Insets left="20.0" right="10" top="30" />
                     </HBox.margin></Button>
