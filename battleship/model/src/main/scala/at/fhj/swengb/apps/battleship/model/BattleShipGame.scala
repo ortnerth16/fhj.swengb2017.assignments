@@ -8,7 +8,7 @@ case class BattleShipGame(battleField: BattleField,
                           getCellHeight: Int => Double,
                           log: String => Unit,
                           player: String
-                          ) {
+                         ) {
 
   /**
     * remembers which vessel was hit at which position

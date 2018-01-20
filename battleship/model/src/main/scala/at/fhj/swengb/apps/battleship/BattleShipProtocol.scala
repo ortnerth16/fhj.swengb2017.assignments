@@ -79,7 +79,7 @@ object BattleShipProtocol {
 
   def convert(g: BattleShipProtobuf.Game.BattleShipGame): BattleShipGame = {
 
-    val battleship = BattleShipGame(convert(g.getBattlefield), (x: Int) => x.toDouble, (x: Int) => x.toDouble, x => (), g.getPlayer)
+    val battleship = BattleShipGame(convert(g.getBattlefield), x => x.toDouble, x => x.toDouble, x => (), g.getPlayer)
     g.getCellsList.asScala.map(x => convert(x)).foreach(battleship.clickedCells)
     battleship
   }

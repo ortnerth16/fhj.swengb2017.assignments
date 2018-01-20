@@ -8,8 +8,9 @@ import javafx.fxml.{FXML, Initializable}
 import javafx.scene.layout.GridPane
 import javafx.scene.text.Text
 
+import at.fhj.swengb.apps.battleship.BattleShipProtobuf
 import at.fhj.swengb.apps.battleship.BattleShipProtocol.convert
-import at.fhj.swengb.apps.battleship.jfx.BattleShipFxApp.gameRound
+import at.fhj.swengb.apps.battleship.jfx.BattleShipFxApp.{filename, gameRound}
 import at.fhj.swengb.apps.battleship.model._
 
 
@@ -47,6 +48,8 @@ class BattleShipFxGame extends Initializable {
 
   private var gameRound: GameRound = _
   private val fileName: String = BattleShipFxApp.getFilename()
+  /*private var newBsGameA: BattleShipGame = _
+  private var newBsGameB: BattleShipGame = _*/
 
   def save(): Unit = saveGameState()
 
@@ -63,11 +66,33 @@ class BattleShipFxGame extends Initializable {
     */
 
   // TODO Change between players
-  // TODO fix load bug
-  // TODO load correct playerNames
   // TODO TimeSheet nachholen
 
   def init(game: GameRound): Unit = {
+
+    setLabels()
+    val newBsGameA = game.battleShipGameA.copy(getCellWidth = this.getCellWidth, getCellHeight = this.getCellHeight)
+    val newBsGameB = game.battleShipGameB.copy(getCellWidth = this.getCellWidth, getCellHeight = this.getCellHeight)
+
+    BattleShipFxApp.setGameRound(game.copy(battleShipGameA = newBsGameA, battleShipGameB = newBsGameB))
+    gameRound = BattleShipFxApp.getGameRound()
+
+    ownGridPane.getChildren.clear()
+    for (c <- newBsGameA.getCells) {
+      ownGridPane.add(c, c.pos.x, c.pos.y)
+    }
+    newBsGameA.getCells().foreach(c => c.init)
+
+
+    enemyGridPane.getChildren.clear()
+    for (c <- newBsGameB.getCells) {
+      enemyGridPane.add(c, c.pos.x, c.pos.y)
+    }
+    newBsGameB.getCells().foreach(c => c.init)
+
+  }
+
+  def initAfterReload(game: GameRound): Unit = {
 
     setLabels()
 
@@ -77,6 +102,7 @@ class BattleShipFxGame extends Initializable {
     }
     game.battleShipGameA.getCells().foreach(c => c.init)
 
+
     enemyGridPane.getChildren.clear()
     for (c <- game.battleShipGameB.getCells) {
       enemyGridPane.add(c, c.pos.x, c.pos.y)
@@ -85,16 +111,10 @@ class BattleShipFxGame extends Initializable {
 
   }
 
-
   private def initGame(): Unit = {
     if(BattleShipFxApp.getGameRound() != null) {
 
       gameRound = BattleShipFxApp.getGameRound()
-
-      /*val playerA = "lsfdhd"
-    val playerB = "ydlfjds"
-    val gameName = "jfdlöh"*/
-
 
       init(gameRound)
       appendLog("New game started.")
@@ -102,7 +122,7 @@ class BattleShipFxGame extends Initializable {
   }
 
   def setLabels(): Unit = {
-    headline.setText(gameRound.playerA ++ " " ++ "@" ++ gameRound.gameName ++ "vs" ++ " " ++ gameRound.playerB)
+    headline.setText(gameRound.playerA ++ " " ++ "@" ++ gameRound.gameName ++ " " ++ "vs" ++ " " ++ gameRound.playerB)
 
     if(gameRound.getCurrentPlayer.takeRight(1) != "s")
       playerTurn.setText(gameRound.getCurrentPlayer ++ "'" ++ "s" ++ " " ++ "turn")
@@ -145,19 +165,35 @@ class BattleShipFxGame extends Initializable {
       gameRound.setCurrentPlayer(gameRound.playerB)
     else gameRound.setCurrentPlayer(gameRound.playerA)
     setLabels()
-    
+
     BattleShipFxApp.saveGameState(fileName)
-    convert(gameRound).writeTo(Files.newOutputStream(Paths.get(fileName)))
     appendLog("Saved the game")
 
   }
 
   def loadGameState(): Unit = {
-    val gameWithOldValues = BattleShipFxApp.loadGameState(fileName)
 
-    init(gameWithOldValues)
-    gameWithOldValues.battleShipGameA.update(gameRound.battleShipGameA.gameState.length)
-    gameWithOldValues.battleShipGameB.update(gameRound.battleShipGameB.gameState.length)
+    val reload = BattleShipProtobuf.Game.parseFrom(Files.newInputStream(Paths.get(filename)))
+
+    val gameWithOldValues = GameRound(convert(reload).playerA,
+      convert(reload).playerB,
+      convert(reload).gameName,
+      x=>(),
+      convert(reload).battleShipGameA,
+      convert(reload).battleShipGameB)
+
+    val newGameOldValues = gameWithOldValues.copy(battleShipGameA = gameWithOldValues.battleShipGameA.copy(getCellWidth = this.getCellWidth, getCellHeight = this.getCellHeight),
+      battleShipGameB = gameWithOldValues.battleShipGameB.copy(getCellWidth = this.getCellWidth, getCellHeight = this.getCellHeight))
+
+    newGameOldValues.battleShipGameA.gameState = convert(reload).battleShipGameA.gameState
+    newGameOldValues.battleShipGameB.gameState = convert(reload).battleShipGameB.gameState
+
+    initAfterReload(newGameOldValues)
+    newGameOldValues.battleShipGameA.update(gameRound.battleShipGameA.gameState.length)
+    newGameOldValues.battleShipGameB.update(gameRound.battleShipGameB.gameState.length)
     appendLog("Loaded the game")
   }
+
+
 }
+
