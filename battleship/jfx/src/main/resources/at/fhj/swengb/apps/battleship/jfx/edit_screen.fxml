@@ -60,23 +60,23 @@
                   <padding>
                      <Insets bottom="5.0" />
                   </padding></RadioButton>
-                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 2" toggleGroup="ships">
+                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 2" toggleGroup="$ships">
                   <padding>
                      <Insets bottom="5.0" />
                   </padding></RadioButton>
-                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 3" toggleGroup="ships">
+                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 3" toggleGroup="$ships">
                   <padding>
                      <Insets bottom="5.0" />
                   </padding></RadioButton>
-                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 4" toggleGroup="ships">
+                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 4" toggleGroup="$ships">
                   <padding>
                      <Insets bottom="5.0" />
                   </padding></RadioButton>
-                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 5" toggleGroup="ships">
+                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 5" toggleGroup="$ships">
                   <padding>
                      <Insets bottom="5.0" />
                   </padding></RadioButton>
-                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 6" toggleGroup="ships">
+                    <RadioButton accessibleRole="TOGGLE_BUTTON" selected="true" text="Ship length 6" toggleGroup="$ships">
                   <padding>
                      <Insets bottom="5.0" />
                   </padding></RadioButton>

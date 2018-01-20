@@ -46,7 +46,7 @@ class BattleShipFxGame extends Initializable {
   def appendLog(message: String): Unit = log.appendText(message + "\n")
 
   private var gameRound: GameRound = _
-  private var fileName: String = BattleShipFxApp.getFilename()
+  private val fileName: String = BattleShipFxApp.getFilename()
 
   def save(): Unit = saveGameState()
 
@@ -102,12 +102,12 @@ class BattleShipFxGame extends Initializable {
   }
 
   def setLabels(): Unit = {
-    headline.setText(gameRound.playerA ++ " " ++ "@" ++ gameRound.gameName ++ " " ++ gameRound.playerB)
+    headline.setText(gameRound.playerA ++ " " ++ "@" ++ gameRound.gameName ++ "vs" ++ " " ++ gameRound.playerB)
 
-    if(gameRound.currentPlayer.takeRight(1) != "s")
-      playerTurn.setText(gameRound.currentPlayer ++ "'" ++ "s" ++ " " ++ "turn")
+    if(gameRound.getCurrentPlayer.takeRight(1) != "s")
+      playerTurn.setText(gameRound.getCurrentPlayer ++ "'" ++ "s" ++ " " ++ "turn")
     else
-      playerTurn.setText(gameRound.currentPlayer ++ "'" ++ " " ++ "turn")
+      playerTurn.setText(gameRound.getCurrentPlayer ++ "'" ++ " " ++ "turn")
   }
 
   /*def saveGameState(): Unit = {
@@ -141,8 +141,13 @@ class BattleShipFxGame extends Initializable {
   }*/
 
   def saveGameState(): Unit = {
+    if(gameRound.getCurrentPlayer == gameRound.playerA)
+      gameRound.setCurrentPlayer(gameRound.playerB)
+    else gameRound.setCurrentPlayer(gameRound.playerA)
+    setLabels()
+    
     BattleShipFxApp.saveGameState(fileName)
-    convert(gameRound).writeTo(Files.newOutputStream(Paths.get("battleship/"+fileName+".bin")))
+    convert(gameRound).writeTo(Files.newOutputStream(Paths.get(fileName)))
     appendLog("Saved the game")
 
   }

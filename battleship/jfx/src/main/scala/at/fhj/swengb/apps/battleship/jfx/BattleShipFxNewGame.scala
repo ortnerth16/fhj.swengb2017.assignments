@@ -73,7 +73,8 @@ class BattleShipFxNewGame extends Initializable {
    val gameA = BattleShipGame(battlefield, (x: Int) => x.toDouble, (x: Int) => x.toDouble, x => (), player1)
    val gameB = BattleShipGame(battlefield, (x: Int) => x.toDouble, (x: Int) => x.toDouble, x => (), player2)
 
-    game = GameRound(player1, player2, name, x => (), gameA, gameB, player1)
+    game = GameRound(player1, player2, name, x => (), gameA, gameB)
+    game.setCurrentPlayer(player1)
     game.setNumberCurrentPlayers(1)
 
    //val test = datetime.toString.filterNot(x => x.isWhitespace ||  x.equals(':'))
