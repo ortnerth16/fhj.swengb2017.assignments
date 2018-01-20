@@ -1,0 +1,67 @@
+== Time expenditure: battleship project
+
+[cols="1,1,1, 1,4", options="header"]
+.Time expenditure
+|===
+| Student
+| Date
+| Estimated Hours
+| Actual Hours
+| Description
+
+
+| grainerm15
+| 12.01.15
+| 2
+| 3
+| tried to find out how to change scenes and connect with controller; implemented welcomescreen
+
+| grainerm15
+| 13.01.15
+| 3
+| 3
+| implemented functionality for different scenes/stage; worked on GUI
+
+| krassers16
+| 15.01.2018
+| 2
+| 2
+| Updated .proto file, updated filename for protobuf files, started to implement some multiplayer functinality
+
+| grainerm15
+| 15.01.15
+| 2
+| 3
+| worked on GUI, implemented new screens
+
+| krassers16
+| 16.01.2018
+| 1.5
+| 2.5
+| Updated .proto file again, continued with implementing multiplayer functionality
+
+| malichri16
+| 16.01.2018
+| -
+| 2
+| initial version of NewGameController & EditModeController
+
+| krassers16
+| 17.01.2018
+| -
+| 2.5
+| Both battlefields are displayed in the game mode
+
+| krassers16
+| 18.01.2018
+| -
+| 2.5
+| Tried to display battlefields correctly
+
+| krassers16
+| 20.01.2018
+| -
+| 3
+| Playernames are displayed in headline, Current player changes if save-button is pressed, Battlefields are now displayed correctly (fixed load bug)
+
+|===

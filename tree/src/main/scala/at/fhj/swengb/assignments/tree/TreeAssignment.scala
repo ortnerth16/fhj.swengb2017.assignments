@@ -82,18 +82,18 @@ object Graph {
     def createTree(tree: Tree[L2D], depth: Int, maxDepth: Int): Tree[L2D] = {
       def nextLevel(subTree: Tree[L2D], level: Int): Branch[L2D] = {
 
-        subTree match {
-          case Node(root) => createSubTree(Node(root), factor, angle, colorMap(0))
-          case Branch(Node(root), Branch(Node(left), Node(right))) =>
-            val createSubtreeLeft = createSubTree(Node(left), factor, angle, colorMap(1))
+          subTree match {
+            case Node(root) => createSubTree(Node(root), factor, angle, colorMap(0))
+            case Branch(Node(root), Branch(Node(left), Node(right))) =>
+              val createSubtreeLeft = createSubTree(Node(left), factor, angle, colorMap(1))
 
-            val createSubtreeRight = createSubTree(Node(right), factor, angle, colorMap(1))
-            Branch(Node(root), Branch(createSubtreeLeft, createSubtreeRight))
+              val createSubtreeRight = createSubTree(Node(right), factor, angle, colorMap(1))
+              Branch(Node(root), Branch(createSubtreeLeft, createSubtreeRight))
 
-          case Branch(Node(root), Branch(left, right)) =>
-            Branch(Node(root), Branch(nextLevel(left, depth + 1), nextLevel(right, depth + 1)))
+            case Branch(Node(root), Branch(left, right)) =>
+              Branch(Node(root), Branch(nextLevel(left, depth + 1), nextLevel(right, depth + 1)))
+          }
         }
-      }
       if(depth == maxDepth)
         tree
       else
@@ -166,3 +166,4 @@ case class L2D(start: Pt2D, end: Pt2D, color: Color) {
 
 
 }
+

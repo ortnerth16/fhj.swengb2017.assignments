@@ -9,46 +9,41 @@
 	-fx-background-color:#696969;
 }
 
-#calculator .rich-blue {
-                 -fx-background-color:
-                     #000000,
-                     linear-gradient(#7ebcea, #2f4b8f),
-                     linear-gradient(#426ab7, #263e75),
-                     linear-gradient(#395cab, #223768);
-                 -fx-background-insets: 0,1,2,3;
-                 -fx-background-radius: 3,2,2,2;
-                 -fx-padding: 12 30 12 30;
-                 -fx-text-fill: white;
-                 -fx-font-size: 25px;
-}
- #calculator .rich-blue Text {
-                 -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 0, 0.0 , 0 , 1);
+#calculator .bevel-grey {
+    -fx-background-color:
+        linear-gradient(#f2f2f2, #d6d6d6),
+        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+        linear-gradient(#dddddd 50%, #f6f6f6 100%);
+    -fx-background-insets: 0,1,1.5;
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
 }
 
-#calculator .rich-blue:hover{
-                -fx-background-color:
-                    #04f6fd
-                    linear-gradient(#7ebcea, #2f4b8f),
-                    linear-gradient(#426ab7, #263e75),
-                    linear-gradient(#395cab, #223768);
+
+#calculator .shiny-orange {
+    -fx-background-color:
+            linear-gradient(#f2f2f2, #d6d6d6),
+            linear-gradient(#ffe657 0%, #f8c202 20%, #eea10b 100%),
+            linear-gradient(#FFA741 0%, #FF9F30 50%);
+        -fx-background-insets: 0,1,1.5;
+        -fx-text-fill: white;
+        -fx-font-size: 25px;
+
 }
 
-calculator .#windows7-default {
-                -fx-background-color:
-                    #3c7fb1,
-                    linear-gradient(#fafdfe, #e8f5fc),
-                    linear-gradient(#eaf6fd 0%, #d9f0fc 49%, #bee6fd 50%, #a7d9f5 100%);
-                -fx-background-insets: 0,1,2;
-                -fx-background-radius: 3,2,1;
-                -fx-padding: 3 30 3 30;
-                -fx-text-fill: black;
-                -fx-font-size: 12px;
-                -fx-font-style: bold;
-}
 
+#calculator .lion {
+    -fx-background-color:
+            linear-gradient(#f2f2f2, #d6d6d6),
+            linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+            linear-gradient(#A9A9A9 0%, #C0C0C0 50%);
+        -fx-background-insets: 0,1,1.5;
+        -fx-text-fill: black;
+        -fx-font-size: 17px;
+}
 
 #calculator .textField {
-                -fx-background-color: ecf3ff;
-                -fx-font-size: 20px;
+    -fx-background-color: A9A9A9;
+    -fx-font-size: 30px;
 
 }

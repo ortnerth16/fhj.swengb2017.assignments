@@ -1,13 +1,15 @@
 package at.fhj.swengb.apps.calculator
 
-import scala.util.Try
-import scala.util.matching.Regex.Match
+import java.util.NoSuchElementException
 
+import scala.util.{Success, Try}
 
 /**
   * Companion object for our reverse polish notation calculator.
   */
 object RpnCalculator {
+
+  val calc: RpnCalculator = RpnCalculator()
 
   /**
     * Returns empty RpnCalculator if string is empty, otherwise pushes all operations
@@ -16,104 +18,90 @@ object RpnCalculator {
     * @param s a string representing a calculation, for example '1 2 +'
     * @return
     */
+
   def apply(s: String): Try[RpnCalculator] = {
-        if(s.isEmpty) Try(RpnCalculator(Nil))
-        else RpnCalculator().push(s.split(' ').map((str) => Op(str)).toSeq)
-  }
 
-}
-
-/**
-  * Reverse Polish Notation Calculator.
-  *
-  * @param stack a datastructure holding all operations
-  */
-case class RpnCalculator(stack: List[Op] = Nil) {
-
-  /**
-    * By pushing Op on the stack, the Op is potentially executed. If it is a Val, it the op instance is just put on the
-    * stack, if not then the stack is examined and the correct operation is performed.
-    *
-    * @param op
-    * @return
-    */
-  def push(op: Op): Try[RpnCalculator] = {
-    op match {
-      case Val(x) => Try(RpnCalculator(stack :+Val(x)))
-      case Add => {
-        pop()._1 match {
-          case Val(x) => pop()._2.pop()._1 match {
-            case Val(y) => Try(RpnCalculator(stack.init.init :+Add.eval(Val(y), Val(x))))
-            case _ => Try(this)
-          }
-          case _ => Try(this)
-        }
-      }
-      case Sub => {
-        pop()._1 match {
-          case Val(x) => pop()._2.pop()._1 match {
-            case Val(y) => Try(RpnCalculator(stack.init.init :+Sub.eval(Val(y), Val(x))))
-            case _ => Try(this)
-          }
-          case _ => Try(this)
-        }
-      }
-      case Mul => {
-        pop()._1 match {
-          case Val(x) => pop()._2.pop()._1 match {
-            case Val(y) => Try(RpnCalculator(stack.init.init :+Mul.eval(Val(y), Val(x))))
-            case _ => Try(this)
-          }
-          case _ => Try(this)
-        }
-      }
-      case Div => {
-        pop()._1 match {
-          case Val(x) => pop()._2.pop()._1 match {
-            case Val(y) => Try(RpnCalculator(stack.init.init :+Div.eval(Val(y), Val(x))))
-            case _ => Try(this)
-          }
-          case _ => Try(this)
-        }
-      }
+    if (s == "")
+      Try(calc)
+    else {
+      val help: List[Op] = s.split(' ').map(a => Op(a)).toList
+      calc.push(help)
     }
+
   }
-
-  /**
-    * Pushes val's on the stack.
-    *
-    * If op is not a val, pop two numbers from the stack and apply the operation.
-    *
-    * @param op
-    * @return
-    */
-  def push(op: Seq[Op]): Try[RpnCalculator] = {
-    Try(op.foldLeft(RpnCalculator(stack))((ack,x) => ack.push(x).get))
-  }
-
-
-  /**
-    * Returns an tuple of Op and a RevPolCal instance with the remainder of the stack.
-    *
-    * @return
-    */
-  def pop(): (Op, RpnCalculator) = (peek(),RpnCalculator(stack.init))
-
-  /**
-    * If stack is nonempty, returns the top of the stack. If it is empty, this function throws a NoSuchElementException.
-    *
-    * @return
-    */
-  def peek(): Op ={
-    if (stack.size != 0) stack(stack.size-1) else {
-      throw new NoSuchElementException
-    }
-  }
-
-  /**
-    * returns the size of the stack.
-    *
-    * @return
-    */
-  def size: Int = stack.size
 }
+  /**
+    * Reverse Polish Notation Calculator.
+    *
+    * @param stack a datastructure holding all operations
+    */
+  case class RpnCalculator(stack: List[Op] = Nil) {
+
+    /**
+      * By pushing Op on the stack, the Op is potentially executed. If it is a Val, it the op instance is just put on the
+      * stack, if not then the stack is examined and the correct operation is performed.
+      *
+      * @param op
+      * @return
+      */
+    def push(op: Op): Try[RpnCalculator] = {
+      op match {
+        case x : Val => Try(RpnCalculator(stack :+ x))
+        case bo : BinOp => {
+
+          def getVal(calculator: RpnCalculator): Val = {
+            val value = calculator.pop()._1
+            value match {
+              case x: Val => x
+              case _ : BinOp => throw new NoSuchElementException
+            }
+          }
+
+          val value1 = getVal(this)
+          var remainingCalc = pop()._2
+          val value2 = getVal(remainingCalc)
+          remainingCalc = remainingCalc.pop()._2
+
+          remainingCalc.push(bo.eval(value1, value2))
+        }
+      }
+
+    }
+
+    /**
+      * Pushes val's on the stack.
+      *
+      * If op is not a val, pop two numbers from the stack and apply the operation.
+      *
+      * @param op
+      * @return
+      */
+    def push(op: Seq[Op]): Try[RpnCalculator] = Try(op.foldLeft(RpnCalculator()) ((acc, operation) => acc.push(operation).get))
+
+    /**
+      * Returns an tuple of Op and a RevPolCal instance with the remainder of the stack.
+      *
+      * @return
+      */
+    def pop(): (Op, RpnCalculator) = (peek(), RpnCalculator(stack.init))
+
+    /**
+      * If stack is nonempty, returns the top of the stack. If it is empty, this function throws a NoSuchElementException.
+      *
+      * @return
+      */
+    def peek(): Op = {
+      if (stack.nonEmpty)
+        stack.last
+      else
+        throw new NoSuchElementException
+    }
+
+    /**
+      * returns the size of the stack.
+      *
+      * @return
+      */
+    def size: Int = stack.size
+  }
+

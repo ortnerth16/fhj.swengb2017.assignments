@@ -1,0 +1,110 @@
+// see https://docs.oracle.com/javafx/2/api/javafx/scene/doc-files/cssref.html
+// see http://fxexperience.com/2011/12/styling-fx-buttons-with-css/
+
+#battleship {
+	-fx-background-color:#ffffff;
+}
+
+.grid {
+
+    -fx-background-color: grey;
+    -fx-opacity: 0.5;
+
+}
+
+.grid_welcome {
+    -fx-background-image: url("eisbär.jpg");
+    -fx-background-color: rgba(255,255,255,0.5);
+    -fx-opacity: 0.8;
+
+    }
+
+.hbox {
+     -fx-padding: 10;
+ }
+
+
+
+}
+.button {
+    -fx-background-color:
+                linear-gradient(#f2f2f2, #d6d6d6),
+                linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+                linear-gradient(#A9A9A9 0%, #C0C0C0 50%);
+            -fx-background-insets: 0,1,1.5;
+            -fx-text-fill: black;
+            -fx-font-size: 25px;
+
+}
+
+.text {
+    -fx-background-color:
+                linear-gradient(#f2f2f2, #d6d6d6),
+                linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+                linear-gradient(#A9A9A9 0%, #C0C0C0 50%);
+            -fx-background-insets: 0,1,1.5;
+            -fx-text-fill: black;
+            -fx-font-size: 18px;
+
+}
+
+.button:hover{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
+    -fx-background-insets: 0 0 -1 0, 0, 1, 2;
+    -fx-background-radius: 3px, 3px, 2px, 1px;
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* 4 8 4 8 */
+    -fx-text-fill: -fx-text-base-color;
+    -fx-alignment: CENTER;
+    -fx-content-display: LEFT;
+}
+
+
+
+
+.textfield {
+    -fx-background-image: url("erde.jpg");
+    -fx-background-color: rgba(255,255,255,0.5);
+
+
+}
+.textfield .scroll-pane {
+    -fx-background-color: transparent;
+}
+.textfield .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+.textfield .scroll-pane .content{
+    -fx-background-color: rgba(255,255,255,0.5);
+}
+
+.buttonBox {
+-fx-background-color:
+                linear-gradient(#f2f2f2, #d6d6d6),
+                linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+                linear-gradient(#A9A9A9 0%, #C0C0C0 50%);
+}
+
+#battleship .shiny-orange {
+    -fx-background-color:
+            linear-gradient(#f2f2f2, #d6d6d6),
+            linear-gradient(#ffe657 0%, #f8c202 20%, #eea10b 100%),
+            linear-gradient(#FFA741 0%, #FF9F30 50%);
+        -fx-background-insets: 0,1,1.5;
+        -fx-text-fill: white;
+        -fx-font-size: 25px;
+
+}
+
+
+#battleship .lion {
+    -fx-background-color:
+            linear-gradient(#f2f2f2, #d6d6d6),
+            linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+            linear-gradient(#A9A9A9 0%, #C0C0C0 50%);
+        -fx-background-insets: 0,1,1.5;
+        -fx-text-fill: black;
+        -fx-font-size: 17px;
+}
+
+
+

@@ -3,18 +3,23 @@
 [cols="1,1,4", options="header"]
 .Time expenditure
 |===
-| 04.12.2017
-| 1
-| design with css finished
+| Date
+| Hours
+| Description
 
-| 04.12.2017-11.12.2017
-| 3
-| Implementing methods and tests
-
-| 11.12.2017
+| 2.12.17
 | 2
-| trying to fix everything (tests work, Calculator not really)
+| Created the GUI
 
+| 5.12.17
+| 2
+| Finished the GUI and implemented some button functionality
 
+| 9.12.17
+| 3
+| Implemented some basic functionality to pass a few tests
 
+| 11.12.17
+| 3
+| Implemented the missing functionality and passed all tests
 |===

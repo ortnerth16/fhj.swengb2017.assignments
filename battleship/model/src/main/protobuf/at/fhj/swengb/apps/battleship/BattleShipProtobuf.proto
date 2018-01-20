@@ -1,0 +1,65 @@
+syntax = "proto3";
+
+package at.fhj.swengb.apps.battleship;
+
+option java_package         = "at.fhj.swengb.apps.battleship";
+option java_outer_classname = "BattleShipProtobuf";
+
+// We created a message for every object in the game which has to be saved
+
+// We used an enum for Direction because we didn't really find an alternative for a trait
+message Game {
+
+    enum Direction {
+        Horizontal = 0;
+        Vertical = 1;
+    }
+
+    message BattlePos {
+        int32 x = 1;
+        int32 y = 2;
+    }
+
+    message Vessel {
+        string name = 1;
+        BattlePos startPos = 2;
+        Direction direction = 3;
+        int32 size = 4;
+    }
+
+    message Fleet {
+        repeated Vessel vessel = 1;
+    }
+
+    message BattleField {
+        int32 with = 1;
+        int32 height = 2;
+        Fleet fleet = 3;
+    }
+
+
+
+    // The cells attribute contains the clicked cells
+    message BattleShipGame {
+        BattleField battlefield = 1;
+        double cellWidth = 2;
+        double cellHeight = 3;
+        repeated BattlePos cells = 4;
+        string player = 5;
+    }
+
+    string gameName = 1;
+    string date = 2;
+    string winner = 3;
+    BattleShipGame gameA = 4;
+    BattleShipGame gameB = 5;
+    int32 numberCurrentPlayers = 6;
+    string currentPlayer = 7;
+    string playerA = 8;
+    string playerB = 9;
+
+}
+
+message Highscore {
+    Game game = 1;
+}
