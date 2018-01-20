@@ -19,7 +19,7 @@
     <HBox prefHeight="50.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
 
 
-        <Text fill="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Player A @Battlename vs Player B" textAlignment="CENTER">
+        <Text fx:id="playerInfo" fill="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="Player A @Battlename vs Player B" textAlignment="CENTER">
 
             <font>
                 <Font name="Roboto Medium" size="40.0" />

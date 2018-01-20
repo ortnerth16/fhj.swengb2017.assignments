@@ -2,6 +2,7 @@ package at.fhj.swengb.apps.battleship.jfx
 
 import java.net.URL
 import java.nio.file.{Files, Paths}
+import java.text.SimpleDateFormat
 import java.util.{Calendar, ResourceBundle}
 import javafx.fxml.{FXML, Initializable}
 import javafx.scene.Scene
@@ -9,7 +10,7 @@ import javafx.scene.control.{Label, TextField}
 
 import at.fhj.swengb.apps.battleship.BattleShipProtocol.convert
 import at.fhj.swengb.apps.battleship.model._
-import at.fhj.swengb.apps.battleship.BattleShipProtocol._
+
 
 import scala.util.Random
 
@@ -51,9 +52,6 @@ class BattleShipFxNewGame extends Initializable {
    val player1 = playerA.getText
    val player2 = playerB.getText
 
-   //battlefield
-   val cellWidth = 0.0
-   val cellHeigh = 0.0
 
    // TODO: Eingabevalidierung?
 
@@ -76,19 +74,22 @@ class BattleShipFxNewGame extends Initializable {
    val gameB = BattleShipGame(battlefield, (x: Int) => x.toDouble, (x: Int) => x.toDouble, x => (), player2)
 
     game = GameRound(player1, player2, name, x => (), gameA, gameB, player1)
-   saveGameState()
+    game.setNumberCurrentPlayers(1)
+
+   //val test = datetime.toString.filterNot(x => x.isWhitespace ||  x.equals(':'))
+   val now = Calendar.getInstance().getTime()
+   val formatDate = new SimpleDateFormat("yyyyMMdd_hh_mm")
+   val day = formatDate.format(now)
+   //day = day.replace(':','.')
+   filename = day + "_" + name + "_" + player1 +"_" +player2+".bin"
+   //filename = filename.replace(' ','%')
+   BattleShipFxApp.setGameRound(game)
+   BattleShipFxApp.setFilename(filename)
+   println("filename for new: " + filename)
+   BattleShipFxApp.saveGameState("battleship/" + filename)
+   BattleShipFxApp.loadFxmlEditMode()
    BattleShipFxApp.display(BattleShipFxApp.loadEditGame,BattleShipFxApp.loadMain)
   }
-
- def saveGameState(): Unit = {    val datetime = Calendar.getInstance().getTime
-  val test = datetime.toString.filterNot(x => x.isWhitespace ||  x.equals(':'))
-  filename = test
-  convert(game).writeTo(Files.newOutputStream(Paths.get("battleship/"+filename+".bin")))
-
-  //appendLog("Saved the game")
-
-
- }
 
   def backToHome(): Unit = {
    BattleShipFxApp.display(BattleShipFxApp.loadWelcome,BattleShipFxApp.loadMain)
@@ -112,13 +113,6 @@ class BattleShipFxNewGame extends Initializable {
   gameName.setText(name)
  }
 
- /**
-   *
-   * @return the gameRound which was created the screen before
-   */
- def getGameRound(): GameRound = {
-  return game
- }
 
 
 }

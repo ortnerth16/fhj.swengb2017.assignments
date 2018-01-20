@@ -17,6 +17,7 @@ import at.fhj.swengb.apps.battleship.BattleShipProtobuf
 import at.fhj.swengb.apps.battleship.BattleShipProtocol.convert
 import at.fhj.swengb.apps.battleship.model.GameRound
 import com.sun.javafx.application.LauncherImpl
+import at.fhj.swengb.apps.battleship.BattleShipProtocol._
 
 
 
@@ -96,11 +97,15 @@ object BattleShipFxApp {
     splash = load("/at/fhj/swengb/apps/battleship/jfx/splash.fxml")
     welcome = load("/at/fhj/swengb/apps/battleship/jfx/welcome_screen.fxml")
     newGame = load("/at/fhj/swengb/apps/battleship/jfx/new_game.fxml")
-    editGame = load("/at/fhj/swengb/apps/battleship/jfx/edit_screen.fxml")
+
     highscore = load("/at/fhj/swengb/apps/battleship/jfx/highscore_screen.fxml")
     credits = load("/at/fhj/swengb/apps/battleship/jfx/credit_screen.fxml")
     join = load("/at/fhj/swengb/apps/battleship/jfx/join_screen.fxml")
     game = load("/at/fhj/swengb/apps/battleship/jfx/game_screen.fxml")
+  }
+
+  def loadFxmlEditMode(): Unit = {
+    editGame = load("/at/fhj/swengb/apps/battleship/jfx/edit_screen.fxml")
   }
 
 
@@ -122,6 +127,7 @@ object BattleShipFxApp {
 
   def display(scene: Scene, stage: Stage): Unit = {
     stage.setScene(scene)
+
     stage.show()
   }
 
@@ -151,9 +157,10 @@ object BattleShipFxApp {
   }
 
   def saveGameState(fname: String): Unit = {
-    val datetime = Calendar.getInstance().getTime
-    val test = datetime.toString.filterNot(x => x.isWhitespace ||  x.equals(':'))
+    //val datetime = Calendar.getInstance().getTime
+    //val test = datetime.toString.filterNot(x => x.isWhitespace ||  x.equals(':'))
     filename = fname
+    convert(gameRound).writeTo(Files.newOutputStream(Paths.get(filename)))
   }
 
   def loadGameState(fname: String): GameRound = {
